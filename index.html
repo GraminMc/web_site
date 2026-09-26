@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gramin MC | Official Store & Survival SMP</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Righteous&family=Outfit:wght@600;700;800;900&family=Plus+Jakarta+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        mcDark: '#0b0f19',
+                        mcPanel: '#111827',
+                        mcCyan: '#38bdf8',
+                        mcPurple: '#a855f7',
+                        mcGold: '#fbbf24',
+                        mcPink: '#ec4899',
+                        mcGreen: '#10b981'
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        .font-brand { font-family: 'Righteous', cursive; }
+        .font-heading { font-family: 'Outfit', sans-serif; }
+        .font-sans { font-family: 'Plus Jakarta Sans', sans-serif; }
+
+        body {
+            background-color: #0b0f19;
+            background-image: linear-gradient(to bottom, rgba(11, 15, 25, 0.7), rgba(11, 15, 25, 0.8)), url('Minecraft.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: #f1f5f9;
+        }
+
+        .mc-card {
+            background: rgba(17, 24, 39, 0.65);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .mc-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card-mythic { border: 1px solid rgba(168, 85, 247, 0.5); }
+        .card-mythic:hover { border-color: rgba(168, 85, 247, 0.9); }
+
+        .card-gold { border: 1px solid rgba(251, 191, 36, 0.5); }
+        .card-gold:hover { border-color: rgba(251, 191, 36, 0.9); }
+
+        .card-epic { border: 1px solid rgba(236, 72, 153, 0.5); }
+        .card-epic:hover { border-color: rgba(236, 72, 153, 0.9); }
+
+        .card-rare { border: 1px solid rgba(16, 185, 129, 0.5); }
+        .card-rare:hover { border-color: rgba(16, 185, 129, 0.9); }
+
+        .glow-text-cyan { text-shadow: 0 0 15px rgba(56, 189, 248, 0.6); }
+        .glow-text-gold { text-shadow: 0 0 15px rgba(251, 191, 36, 0.6); }
+
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
+    </style>
+</head>
+<body class="font-sans min-h-screen flex flex-col justify-between selection:bg-cyan-500 selection:text-black">
+
+    <!-- HEADER / NAVIGATION -->
+    <header class="sticky top-0 z-40 w-full p-4">
+        <div class="max-w-7xl mx-auto bg-slate-900/65 backdrop-blur-md rounded-2xl px-6 py-3 border border-slate-700/40 flex flex-wrap items-center justify-between gap-4 shadow-2xl">
+            
+            <div class="flex items-center gap-3 cursor-pointer" onclick="switchTab('home')">
+                <img src="logo.png" onerror="this.src='https://cdn-icons-png.flaticon.com/512/3076/3076416.png'" alt="Gramin MC" class="w-12 h-12 rounded-xl object-contain border border-cyan-400/50 bg-slate-950/80 p-1">
+                <div>
+                    <h1 class="font-brand text-2xl text-cyan-400 glow-text-cyan tracking-wider">Gramin MC</h1>
+                    <p class="text-[10px] text-slate-300 font-semibold tracking-wider uppercase">Official Survival SMP</p>
+                </div>
+            </div>
+
+            <nav class="flex items-center gap-2">
+                <button onclick="switchTab('home')" id="nav-home" class="nav-btn px-4 py-2 rounded-xl text-xs font-bold transition text-cyan-400 bg-cyan-500/20 border border-cyan-400/40">
+                    <i class="fa-solid fa-house mr-1.5"></i> Home
+                </button>
+                <button onclick="switchTab('store')" id="nav-store" class="nav-btn px-4 py-2 rounded-xl text-xs font-bold transition text-slate-300 hover:text-white hover:bg-slate-800/60">
+                    <i class="fa-solid fa-cart-shopping mr-1.5"></i> Store
+                </button>
+                <button onclick="switchTab('rules')" id="nav-rules" class="nav-btn px-4 py-2 rounded-xl text-xs font-bold transition text-slate-300 hover:text-white hover:bg-slate-800/60">
+                    <i class="fa-solid fa-scroll mr-1.5"></i> Rules
+                </button>
+            </nav>
+
+            <div class="flex items-center gap-3">
+                <a href="https://discord.gg/8UPQftwzQN" target="_blank" class="px-4 py-2 bg-[#5865F2] hover:bg-[#4752C4] text-white font-bold rounded-xl text-xs flex items-center gap-2 transition shadow-lg">
+                    <i class="fa-brands fa-discord text-base"></i>
+                    <span>Discord</span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- MAIN CONTENT -->
+    <main class="max-w-7xl mx-auto px-4 py-6 flex-grow w-full">
+
+        <!-- HOME TAB -->
+        <section id="tab-home" class="tab-content active space-y-8">
+            <div class="bg-slate-950/35 backdrop-blur-md rounded-3xl p-8 md:p-12 text-center border border-white/15 shadow-2xl space-y-6">
+                <img src="logo.png" onerror="this.src='https://cdn-icons-png.flaticon.com/512/3076/3076416.png'" alt="Gramin MC" class="w-28 h-28 mx-auto object-contain drop-shadow-[0_0_20px_rgba(56,189,248,0.5)]">
+                <span class="px-4 py-1.5 rounded-full text-xs font-extrabold tracking-widest uppercase bg-emerald-500/30 text-emerald-300 border border-emerald-500/40">
+                    24/7 Always Active SMP
+                </span>
+                <h1 class="font-brand text-3xl md:text-5xl text-amber-300 glow-text-gold">WELCOME TO GRAMIN MC</h1>
+                <p class="text-slate-100 max-w-2xl mx-auto text-sm md:text-base leading-relaxed font-medium drop-shadow-md">
+                    Join our lag-free 24/7 Survival SMP server! Protect your builds, trade coins, open crate keys, and rank up in our friendly community.
+                </p>
+                <div class="flex flex-wrap justify-center gap-4 pt-2">
+                    <button onclick="switchTab('store')" class="px-6 py-3 bg-amber-500 hover:bg-amber-400 text-slate-950 font-extrabold rounded-xl text-sm transition shadow-lg flex items-center gap-2">
+                        <i class="fa-solid fa-shop"></i> Visit Store
+                    </button>
+                    <a href="https://discord.gg/8UPQftwzQN" target="_blank" class="px-6 py-3 bg-[#5865F2] hover:bg-[#4752C4] text-white font-extrabold rounded-xl text-sm transition shadow-lg flex items-center gap-2">
+                        <i class="fa-brands fa-discord"></i> Join Discord
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- STORE TAB -->
+        <section id="tab-store" class="tab-content bg-slate-950/35 backdrop-blur-md p-6 md:p-8 rounded-3xl border border-white/15 shadow-2xl space-y-8">
+            
+            <div class="text-center space-y-2">
+                <h2 class="font-brand text-3xl md:text-4xl text-amber-300 glow-text-gold tracking-wider">GRAMIN MC STORE</h2>
+                <p class="text-xs text-slate-200">Enhance your gameplay with coin packs and crate keys!</p>
+            </div>
+
+            <!-- FILTER BUTTONS -->
+            <div class="flex flex-wrap justify-center gap-2 md:gap-3">
+                <button onclick="filterCategory('all')" id="filter-all" class="filter-btn px-5 py-2.5 rounded-xl text-xs font-extrabold uppercase transition bg-cyan-500 text-slate-950 shadow-lg">
+                    <i class="fa-solid fa-border-all mr-1.5"></i> ALL ITEMS
+                </button>
+                <button onclick="filterCategory('coins')" id="filter-coins" class="filter-btn px-5 py-2.5 rounded-xl text-xs font-extrabold uppercase transition bg-slate-900/70 text-slate-300 border border-slate-700/60 hover:text-white">
+                    <i class="fa-solid fa-coins mr-1.5 text-amber-400"></i> COIN PACKS
+                </button>
+                <button onclick="filterCategory('keys')" id="filter-keys" class="filter-btn px-5 py-2.5 rounded-xl text-xs font-extrabold uppercase transition bg-slate-900/70 text-slate-300 border border-slate-700/60 hover:text-white">
+                    <i class="fa-solid fa-key mr-1.5 text-cyan-400"></i> CRATE KEYS
+                </button>
+            </div>
+
+            <!-- STORE ITEMS GRID -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+
+                <!-- COIN 1: 10 SMP COIN -->
+                <div class="store-item category-coins mc-card rounded-2xl p-5 flex flex-col justify-between relative text-center group">
+                    <span class="absolute -top-3 left-1/2 -translate-x-1/2 px-3 py-0.5 rounded-full text-[10px] font-black uppercase bg-slate-900 text-slate-300 border border-slate-700">STARTER</span>
+                    <div class="pt-3 space-y-3">
+                        <div class="w-14 h-14 mx-auto rounded-2xl bg-amber-500/20 text-amber-400 flex items-center justify-center text-2xl border border-amber-500/30">
+                            <i class="fa-solid fa-coins"></i>
+                        </div>
+                        <h3 class="font-extrabold text-white text-base font-heading">10 SMP COIN</h3>
+                        <p class="text-[11px] text-slate-300">Essential Trade Currency</p>
+                    </div>
+                    <div class="mt-6 space-y-3">
+                        <p class="text-2xl font-black text-amber-300 font-heading">5৳</p>
+                        <button onclick="openBuyModal('10 SMP Coin', '5৳')" class="w-full py-2.5 bg-amber-500 hover:bg-amber-400 text-slate-950 font-extrabold rounded-xl text-xs uppercase transition shadow-lg">BUY NOW</button>
+                    </div>
+                </div>
+
+                <!-- COIN 2: 30 SMP COIN -->
+                <div class="store-item category-coins mc-card rounded-2xl p-5 flex flex-col justify-between relative text-center group">
+                    <span class="absolute -top-3 left-1/2 -translate-x-1/2 px-3 py-0.5 rounded-full text-[10px] font-black uppercase bg-slate-900 text-slate-300 border border-slate-700">REGULAR</span>
+                    <div class="pt-3 space-y-3">
+                        <div class="w-14 h-14 mx-auto rounded-2xl bg-amber-500/20 text-amber-400 flex items-center justify-center text-2xl border border-amber-500/30">
+                            <i class="fa-solid fa-coins"></i>
+                        </div>
+                        <h3 class="font-extrabold text-white text-base font-heading">30 SMP COIN</h3>
+                        <p class="text-[11px] text-slate-300">Handy Trading Pack</p>
+                    </div>
+                    <div class="mt-6 space-y-3">
+                        <p class="text-2xl font-black text-amber-300 font-heading">15৳</p>
+                        <button onclick="openBuyModal('30 SMP Coin', '15৳')" class="w-full py-2.5 bg-amber-500 hover:bg-amber-400 text-slate-950 font-extrabold rounded-xl text-xs uppercase transition shadow-lg">BUY NOW</button>
+                    </div>
+                </div>
+
+                <!-- COIN 3: 50 SMP COIN -->
+                <div class="store-item category-coins mc-card rounded-2xl p-5 flex flex-col justify-between relative text-center group">
+                    <span class="absolute -top-3 left-1/2 -translate-x-1/2 px-3 py-0.5 rounded-full text-[10px] font-black uppercase bg-slate-900 text-slate-300 border border-slate-700">MEDIUM</span>
+                    <div class="pt-3 space-y-3">
+                        <div class="w-14 h-14 mx-auto rounded-2xl bg-amber-500/20 text-amber-400 flex items-center justify-center text-2xl border border-amber-500/30">
+                            <i class="fa-solid fa-coins"></i>
+                        </div>
+                        <h3 class="font-extrabold text-white text-base font-heading">50 SMP COIN</h3>
+                        <p class="text-[11px] text-slate-300">Boosted Coin Pack</p>
+                    </div>
+                    <div class="mt-6 space-y-3">
+                        <p class="text-2xl font-black text-amber-300 font-heading">25৳</p>
+                        <button onclick="openBuyModal('50 SMP Coin', '25৳')" class="w-full py-2.5 bg-amber-500 hover:bg-amber-400 text-slate-950 font-extrabold rounded-xl text-xs uppercase transition shadow-lg">BUY NOW</button>
+                    </div>
+                </div>
+
+                <!-- COIN 4: 100 SMP COIN -->
+                <div class="store-item category-coins mc-card rounded-2xl p-5 flex flex-col justify-between relative text-center group">
+                    <span class="absolute -top-3 left-1/2 -translate-x-1/2 px-3 py-0.5 rounded-full text-[10px] font-black uppercase bg-cyan-500 text-slate-950 shadow-md">POPULAR</span>
+                    <div class="pt-3 space-y-3">
+                        <div class="w-14 h-14 mx-auto rounded-2xl bg-cyan-500/20 text-cyan-300 flex items-center justify-center text-2xl border border-cyan-400/40">
+                            <i class="fa-solid fa-sack-dollar"></i>
+                        </div>
+                        <h3 class="font-extrabold text-white text-base font-heading">100 SMP COIN</h3>
+                        <p class="text-[11px] text-cyan-300">Most Chosen Pack</p>
+                    </div>
+                    <div class="mt-6 space-y-3">
+                        <p class="text-2xl font-black text-cyan-300 font-heading">50৳</p>
+                        <button onclick="openBuyModal('100 SMP Coin', '50৳')" class="w-full py-2.5 bg-cyan-400 hover:bg-cyan-300 text-slate-950 font-extrabold rounded-xl text-xs uppercase transition shadow-lg">BUY NOW</button>
+                    </div>
+                </div>
+
+                <!-- COIN 5: 500 SMP COIN -->
+                <div class="store-item category-coins mc-card rounded-2xl p-5 flex flex-col justify-between relative text-center group">
+                    <span class="absolute -top-3 left-1/2 -translate-x-1/2 px-3 py-0.5 rounded-full text-[10px] font-black uppercase bg-slate-900 text-slate-300 border border-slate-700">PRO</span>
+                    <div class="pt-3 space-y-3">
+                        <div class="w-14 h-14 mx-auto rounded-2xl bg-amber-500/20 text-amber-400 flex items-center justify-center text-2xl border border-amber-500/30">
+                            <i class="fa-solid fa-vault"></i>
+                        </div>
+                        <h3 class="font-extrabold text-white text-base font-heading">500 SMP COIN</h3>
+                        <p class="text-[11px] text-slate-300">Pro Player Storage</p>
+                    </div>
+                    <div class="mt-6 space-y-3">
+                        <p class="text-2xl font-black text-amber-300 font-heading">250৳</p>
+                        <button onclick="openBuyModal('500 SMP Coin', '250৳')" class="w-full py-2.5 bg-amber-500 hover:bg-amber-400 text-slate-950 font-extrabold rounded-xl text-xs uppercase transition shadow-lg">BUY NOW</button>
+                    </div>
+                </div>
+
+                <!-- COIN 6: 1000 SMP COIN -->
+                <div class="store-item category-coins mc-card card-gold rounded-2xl p-5 flex flex-col justify-between relative text-center group">
+                    <span class="absolute -top-3 left-1/2 -translate-x-1/2 px-3 py-0.5 rounded-full text-[10px] font-black uppercase bg-amber-400 text-slate-950 shadow-md">BEST VALUE</span>
+                    <div class="pt-3 space-y-3">
+                        <div class="w-14 h-14 mx-auto rounded-2xl bg-amber-500/20 text-amber-400 flex items-center justify-center text-2xl border border-amber-500/40">
+                            <i class="fa-solid fa-gem"></i>
+                        </div>
+                        <h3 class="font-extrabold text-white text-base font-heading">1000 SMP COIN</h3>
+                        <p class="text-[11px] text-amber-300">Ultimate Wealth Chest</p>
+                    </div>
+                    <div class="mt-6 space-y-3">
+                        <p class="text-2xl font-black text-amber-300 font-heading">500৳</p>
+                        <button onclick="openBuyModal('1000 SMP Coin', '500৳')" class="w-full py-2.5 bg-amber-400 hover:bg-amber-300 text-slate-950 font-extrabold rounded-xl text-xs uppercase transition shadow-lg">BUY NOW</button>
+                    </div>
+                </div>
+
+                <!-- KEY 1: DARKNESS KEY -->
+                <div class="store-item category-keys mc-card card-mythic rounded-2xl p-5 flex flex-col justify-between relative text-center group">
+                    <span class="absolute -top-3 left-1/2 -translate-x-1/2 px-3 py-0.5 rounded-full text-[10px] font-black uppercase bg-purple-600 text-white shadow-md">MYTHIC KEY</span>
+                    <div class="pt-3 space-y-3">
+                        <div class="w-14 h-14 mx-auto rounded-2xl bg-purple-500/20 text-purple-300 flex items-center justify-center text-2xl border border-purple-500/40">
+                            <i class="fa-solid fa-key"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-extrabold text-white text-base font-heading">Darkness Key (1x)</h3>
+                            <p class="text-[11px] text-purple-300">Unlocks Dark Realm Crate</p>
+                        </div>
+                    </div>
+                    <div class="mt-4 pt-3 border-t border-purple-500/20 space-y-1">
+                        <p class="text-xs font-bold text-amber-300">Price: 45৳</p>
+                        <p class="text-xs font-bold text-cyan-300">In-game: 100 Coins</p>
+                        <button onclick="openBuyModal('Darkness Key (1x)', '45৳ or 100 Coins')" class="w-full py-2.5 bg-purple-600 hover:bg-purple-500 text-white font-extrabold rounded-xl text-xs uppercase transition shadow-lg mt-2">ORDER KEY</button>
+                    </div>
+                </div>
+
+                <!-- KEY 2: GRAMIN KEY -->
+                <div class="store-item category-keys mc-card card-gold rounded-2xl p-5 flex flex-col justify-between relative text-center group">
+                    <span class="absolute -top-3 left-1/2 -translate-x-1/2 px-3 py-0.5 rounded-full text-[10px] font-black uppercase bg-amber-400 text-slate-950 shadow-md">LEGENDARY</span>
+                    <div class="pt-3 space-y-3">
+                        <div class="w-14 h-14 mx-auto rounded-2xl bg-amber-500/20 text-amber-400 flex items-center justify-center text-2xl border border-amber-500/40">
+                            <i class="fa-solid fa-key"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-extrabold text-white text-base font-heading">Gramin Key (1x)</h3>
+                            <p class="text-[11px] text-amber-300">Official Server Loot Crate</p>
+                        </div>
+                    </div>
+                    <div class="mt-4 pt-3 border-t border-amber-500/20 space-y-1">
+                        <p class="text-xs font-bold text-amber-300">Price: 35৳</p>
+                        <p class="text-xs font-bold text-cyan-300">In-game: 80 Coins</p>
+                        <button onclick="openBuyModal('Gramin Key (1x)', '35৳ or 80 Coins')" class="w-full py-2.5 bg-amber-500 hover:bg-amber-400 text-slate-950 font-extrabold rounded-xl text-xs uppercase transition shadow-lg mt-2">ORDER KEY</button>
+                    </div>
+                </div>
+
+                <!-- KEY 3: AMETHYST KEY -->
+                <div class="store-item category-keys mc-card card-epic rounded-2xl p-5 flex flex-col justify-between relative text-center group">
+                    <span class="absolute -top-3 left-1/2 -translate-x-1/2 px-3 py-0.5 rounded-full text-[10px] font-black uppercase bg-pink-500 text-white shadow-md">EPIC KEY</span>
+                    <div class="pt-3 space-y-3">
+                        <div class="w-14 h-14 mx-auto rounded-2xl bg-pink-500/20 text-pink-400 flex items-center justify-center text-2xl border border-pink-500/40">
+                            <i class="fa-solid fa-gem"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-extrabold text-white text-base font-heading">Amethyst Key (1x)</h3>
+                            <p class="text-[11px] text-pink-300">Crystal Crate Rewards</p>
+                        </div>
+                    </div>
+                    <div class="mt-4 pt-3 border-t border-pink-500/20 space-y-1">
+                        <p class="text-xs font-bold text-amber-300">Price: 25৳</p>
+                        <p class="text-xs font-bold text-cyan-300">In-game: 65 Coins</p>
+                        <button onclick="openBuyModal('Amethyst Key (1x)', '25৳ or 65 Coins')" class="w-full py-2.5 bg-pink-500 hover:bg-pink-400 text-white font-extrabold rounded-xl text-xs uppercase transition shadow-lg mt-2">ORDER KEY</button>
+                    </div>
+                </div>
+
+                <!-- KEY 4: SPAWNER KEY -->
+                <div class="store-item category-keys mc-card card-rare rounded-2xl p-5 flex flex-col justify-between relative text-center group">
+                    <span class="absolute -top-3 left-1/2 -translate-x-1/2 px-3 py-0.5 rounded-full text-[10px] font-black uppercase bg-emerald-500 text-slate-950 shadow-md">RARE KEY</span>
+                    <div class="pt-3 space-y-3">
+                        <div class="w-14 h-14 mx-auto rounded-2xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center text-2xl border border-emerald-500/40">
+                            <i class="fa-solid fa-box-open"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-extrabold text-white text-base font-heading">Spawner Key (1x)</h3>
+                            <p class="text-[11px] text-emerald-300">Mob Spawner Crate</p>
+                        </div>
+                    </div>
+                    <div class="mt-4 pt-3 border-t border-emerald-500/20 space-y-1">
+                        <p class="text-xs font-bold text-amber-300">Price: 15৳</p>
+                        <p class="text-xs font-bold text-cyan-300">In-game: 40 Coins</p>
+                        <button onclick="openBuyModal('Spawner Key (1x)', '15৳ or 40 Coins')" class="w-full py-2.5 bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-extrabold rounded-xl text-xs uppercase transition shadow-lg mt-2">ORDER KEY</button>
+                    </div>
+                </div>
+
+                <!-- KEY 5: MONTHLY KEY -->
+                <div class="store-item category-keys mc-card rounded-2xl p-5 flex flex-col justify-between relative text-center group">
+                    <span class="absolute -top-3 left-1/2 -translate-x-1/2 px-3 py-0.5 rounded-full text-[10px] font-black uppercase bg-cyan-500 text-slate-950 shadow-md">MONTHLY</span>
+                    <div class="pt-3 space-y-3">
+                        <div class="w-14 h-14 mx-auto rounded-2xl bg-cyan-500/20 text-cyan-300 flex items-center justify-center text-2xl border border-cyan-400/40">
+                            <i class="fa-solid fa-calendar-check"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-extrabold text-white text-base font-heading">Monthly Key (1x)</h3>
+                            <p class="text-[11px] text-cyan-300">Monthly Reward Crate</p>
+                        </div>
+                    </div>
+                    <div class="mt-4 pt-3 border-t border-cyan-500/20 space-y-1">
+                        <p class="text-xs font-bold text-amber-300">Price: 10৳</p>
+                        <p class="text-xs font-bold text-cyan-300">In-game: 20 Coins</p>
+                        <button onclick="openBuyModal('Monthly Key (1x)', '10৳ or 20 Coins')" class="w-full py-2.5 bg-cyan-400 hover:bg-cyan-300 text-slate-950 font-extrabold rounded-xl text-xs uppercase transition shadow-lg mt-2">ORDER KEY</button>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- RULES TAB -->
+        <section id="tab-rules" class="tab-content bg-slate-950/35 backdrop-blur-md p-8 md:p-10 rounded-3xl border border-white/15 shadow-2xl space-y-8">
+            
+            <div class="text-center space-y-2">
+                <h2 class="font-brand text-3xl md:text-4xl text-cyan-400 glow-text-cyan">MINECRAFT SERVER RULES</h2>
+                <p class="text-xs text-slate-300">Please follow these guidelines strictly to keep the community safe and fair for everyone.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm text-slate-300">
+                
+                <!-- Rule 1 -->
+                <div class="p-4 rounded-2xl bg-slate-900/60 border border-white/10 flex items-start gap-3.5">
+                    <div class="w-8 h-8 rounded-xl bg-red-500/20 text-red-400 flex items-center justify-center shrink-0 border border-red-500/30 font-bold text-xs">1</div>
+                    <div>
+                        <h4 class="font-bold text-white text-sm mb-1 font-heading">No Hacking or Cheating</h4>
+                        <p class="text-xs text-slate-300 leading-relaxed">Using hacked clients, X-Ray, Fly, Kill Aura, Auto Clicker, or any other unfair advantage is strictly prohibited.</p>
+                    </div>
+                </div>
+
+                <!-- Rule 2 -->
+                <div class="p-4 rounded-2xl bg-slate-900/60 border border-white/10 flex items-start gap-3.5">
+                    <div class="w-8 h-8 rounded-xl bg-pink-500/20 text-pink-400 flex items-center justify-center shrink-0 border border-pink-500/30 font-bold text-xs">2</div>
+                    <div>
+                        <h4 class="font-bold text-white text-sm mb-1 font-heading">Respect Everyone</h4>
+                        <p class="text-xs text-slate-300 leading-relaxed">Treat all players with respect. Bullying, harassment, discrimination, or toxic behavior is not allowed.</p>
+                    </div>
+                </div>
+
+                <!-- Rule 3 -->
+                <div class="p-4 rounded-2xl bg-slate-900/60 border border-white/10 flex items-start gap-3.5">
+                    <div class="w-8 h-8 rounded-xl bg-amber-500/20 text-amber-400 flex items-center justify-center shrink-0 border border-amber-500/30 font-bold text-xs">3</div>
+                    <div>
+                        <h4 class="font-bold text-white text-sm mb-1 font-heading">No Spamming</h4>
+                        <p class="text-xs text-slate-300 leading-relaxed">Do not spam messages, commands, advertisements, or repeated characters in the server chat.</p>
+                    </div>
+                </div>
+
+                <!-- Rule 4 -->
+                <div class="p-4 rounded-2xl bg-slate-900/60 border border-white/10 flex items-start gap-3.5">
+                    <div class="w-8 h-8 rounded-xl bg-purple-500/20 text-purple-400 flex items-center justify-center shrink-0 border border-purple-500/30 font-bold text-xs">4</div>
+                    <div>
+                        <h4 class="font-bold text-white text-sm mb-1 font-heading">No Inappropriate Content</h4>
+                        <p class="text-xs text-slate-300 leading-relaxed">Do not share inappropriate, offensive, NSFW, or disturbing content in chat, builds, skins, or usernames.</p>
+                    </div>
+                </div>
+
+                <!-- Rule 5 -->
+                <div class="p-4 rounded-2xl bg-slate-900/60 border border-white/10 flex items-start gap-3.5">
+                    <div class="w-8 h-8 rounded-xl bg-cyan-500/20 text-cyan-400 flex items-center justify-center shrink-0 border border-cyan-500/30 font-bold text-xs">5</div>
+                    <div>
+                        <h4 class="font-bold text-white text-sm mb-1 font-heading">No Griefing</h4>
+                        <p class="text-xs text-slate-300 leading-relaxed">Do not destroy, modify, burn, or damage another player's builds or property without permission.</p>
+                    </div>
+                </div>
+
+                <!-- Rule 6 -->
+                <div class="p-4 rounded-2xl bg-slate-900/60 border border-white/10 flex items-start gap-3.5">
+                    <div class="w-8 h-8 rounded-xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center shrink-0 border border-emerald-500/30 font-bold text-xs">6</div>
+                    <div>
+                        <h4 class="font-bold text-white text-sm mb-1 font-heading">No Stealing</h4>
+                        <p class="text-xs text-slate-300 leading-relaxed">Taking items, blocks, pets, or resources from another player's base or storage without permission is prohibited.</p>
+                    </div>
+                </div>
+
+                <!-- Rule 7 -->
+                <div class="p-4 rounded-2xl bg-slate-900/60 border border-white/10 flex items-start gap-3.5">
+                    <div class="w-8 h-8 rounded-xl bg-blue-500/20 text-blue-400 flex items-center justify-center shrink-0 border border-blue-500/30 font-bold text-xs">7</div>
+                    <div>
+                        <h4 class="font-bold text-white text-sm mb-1 font-heading">No Unwanted PvP</h4>
+                        <p class="text-xs text-slate-300 leading-relaxed">Do not attack or kill other players without their permission, especially in non-PvP areas.</p>
+                    </div>
+                </div>
+
+                <!-- Rule 8 -->
+                <div class="p-4 rounded-2xl bg-slate-900/60 border border-white/10 flex items-start gap-3.5">
+                    <div class="w-8 h-8 rounded-xl bg-yellow-500/20 text-yellow-400 flex items-center justify-center shrink-0 border border-yellow-500/30 font-bold text-xs">8</div>
+                    <div>
+                        <h4 class="font-bold text-white text-sm mb-1 font-heading">No Bug Exploiting</h4>
+                        <p class="text-xs text-slate-300 leading-relaxed">Do not use server bugs, glitches, duplication exploits, or unintended mechanics to gain an unfair advantage.</p>
+                    </div>
+                </div>
+
+                <!-- Rule 9 -->
+                <div class="p-4 rounded-2xl bg-slate-900/60 border border-white/10 flex items-start gap-3.5">
+                    <div class="w-8 h-8 rounded-xl bg-indigo-500/20 text-indigo-400 flex items-center justify-center shrink-0 border border-indigo-500/30 font-bold text-xs">9</div>
+                    <div>
+                        <h4 class="font-bold text-white text-sm mb-1 font-heading">No Scamming</h4>
+                        <p class="text-xs text-slate-300 leading-relaxed">Do not trick or deceive players during trades, deals, or transactions. Keep all trades fair and honest.</p>
+                    </div>
+                </div>
+
+                <!-- Rule 10 -->
+                <div class="p-4 rounded-2xl bg-slate-900/60 border border-white/10 flex items-start gap-3.5">
+                    <div class="w-8 h-8 rounded-xl bg-teal-500/20 text-teal-400 flex items-center justify-center shrink-0 border border-teal-500/30 font-bold text-xs">10</div>
+                    <div>
+                        <h4 class="font-bold text-white text-sm mb-1 font-heading">Follow Staff Instructions</h4>
+                        <p class="text-xs text-slate-300 leading-relaxed">Respect all server staff and follow their instructions. If you disagree with a decision, contact staff calmly.</p>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+
+    <!-- PURCHASE MODAL -->
+    <div id="buy-modal" class="fixed inset-0 z-50 hidden bg-slate-950/80 backdrop-blur-md flex items-center justify-center p-4">
+        <div class="bg-slate-900/90 backdrop-blur-xl border border-cyan-400/40 rounded-3xl max-w-md w-full p-6 text-center space-y-5 shadow-2xl">
+            <div class="w-16 h-16 mx-auto rounded-full bg-amber-500/20 text-amber-400 flex items-center justify-center text-3xl border border-amber-400/40">
+                <i class="fa-solid fa-cart-shopping"></i>
+            </div>
+            <div>
+                <h3 id="modal-title" class="font-brand text-2xl text-white">Item Name</h3>
+                <p id="modal-price" class="text-2xl font-black text-amber-300 mt-1">Price</p>
+            </div>
+            <p class="text-xs text-slate-300 leading-relaxed">
+                To complete your purchase safely, join our official Discord server and open a ticket!
+            </p>
+            <div class="flex gap-3 pt-2">
+                <button onclick="closeBuyModal()" class="w-1/2 py-3 bg-slate-800 hover:bg-slate-700 text-slate-300 font-bold rounded-xl text-xs uppercase transition">Close</button>
+                <a href="https://discord.gg/8UPQftwzQN" target="_blank" class="w-1/2 py-3 bg-[#5865F2] hover:bg-[#4752C4] text-white font-bold rounded-xl text-xs uppercase transition flex items-center justify-center gap-2 shadow-lg">
+                    <i class="fa-brands fa-discord"></i> Discord
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="border-t border-white/10 bg-slate-950/70 backdrop-blur-md py-6 text-center text-xs text-slate-400">
+        <p class="font-brand text-cyan-400 text-sm mb-1">Gramin MC</p>
+        <p>&copy; 2026 Gramin MC. All rights reserved. Not affiliated with Mojang AB.</p>
+    </footer>
+
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        function switchTab(tabId) {
+            document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
+            document.querySelectorAll('.nav-btn').forEach(btn => {
+                btn.classList.remove('text-cyan-400', 'bg-cyan-500/20', 'border', 'border-cyan-400/40');
+                btn.classList.add('text-slate-300');
+            });
+
+            const targetTab = document.getElementById(`tab-${tabId}`);
+            if (targetTab) targetTab.classList.add('active');
+
+            const activeBtn = document.getElementById(`nav-${tabId}`);
+            if (activeBtn) {
+                activeBtn.classList.remove('text-slate-300');
+                activeBtn.classList.add('text-cyan-400', 'bg-cyan-500/20', 'border', 'border-cyan-400/40');
+            }
+        }
+
+        function filterCategory(cat) {
+            const items = document.querySelectorAll('.store-item');
+            const btns = document.querySelectorAll('.filter-btn');
+
+            btns.forEach(btn => {
+                btn.classList.remove('bg-cyan-500', 'text-slate-950', 'shadow-lg');
+                btn.classList.add('bg-slate-900/70', 'text-slate-300', 'border', 'border-slate-700/60');
+            });
+
+            const activeBtn = document.getElementById(`filter-${cat}`);
+            if (activeBtn) {
+                activeBtn.classList.remove('bg-slate-900/70', 'text-slate-300', 'border', 'border-slate-700/60');
+                activeBtn.classList.add('bg-cyan-500', 'text-slate-950', 'shadow-lg');
+            }
+
+            items.forEach(item => {
+                if (cat === 'all' || item.classList.contains(`category-${cat}`)) {
+                    item.style.display = 'flex';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        }
+
+        function openBuyModal(name, price) {
+            document.getElementById('modal-title').innerText = name;
+            document.getElementById('modal-price').innerText = price;
+            document.getElementById('buy-modal').classList.remove('hidden');
+        }
+
+        function closeBuyModal() {
+            document.getElementById('buy-modal').classList.add('hidden');
+        }
+    </script>
+</body>
+</html>
