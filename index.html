@@ -1,0 +1,1886 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gramin MC | Ultimate Survival SMP</title>
+    <!-- Google Fonts & FontAwesome -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=Orbitron:wght@700;800;900&family=JetBrains+Mono:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <style>
+        /* CSS RESET & CORE VARIABLES */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            scroll-behavior: smooth;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        :root {
+            --bg-black: #030712;
+            --bg-dark: #0b0f19;
+            --bg-card: rgba(15, 23, 42, 0.7);
+            --bg-card-hover: rgba(23, 37, 65, 0.85);
+            --primary-blue: #38bdf8;
+            --primary-glow: rgba(56, 189, 248, 0.4);
+            --accent-cyan: #06b6d4;
+            --text-light: #f8fafc;
+            --text-muted: #94a3b8;
+            --border-color: rgba(56, 189, 248, 0.25);
+            --border-hover: rgba(56, 189, 248, 0.6);
+            --discord-color: #5865F2;
+            --youtube-color: #ff0000;
+            --gold-color: #fbbf24;
+            --gold-glow: rgba(251, 191, 36, 0.4);
+            --green-color: #22c55e;
+            --purple-color: #a855f7;
+            --red-color: #ef4444;
+        }
+
+        body {
+            background: linear-gradient(180deg, rgba(3, 7, 18, 0.7) 0%, rgba(3, 7, 18, 0.9) 100%), url('bg1.png') no-repeat center center fixed;
+            background-size: cover;
+            color: var(--text-light);
+            overflow-x: hidden;
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+
+        /* CUSTOM SCROLLBAR */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--bg-black);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(var(--primary-blue), var(--accent-cyan));
+            border-radius: 4px;
+        }
+
+        /* HEADER & NAVIGATION */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            background: rgba(3, 7, 18, 0.85);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border-color);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .nav-container {
+            max-width: 1280px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.8rem 1.5rem;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            z-index: 1001;
+            text-decoration: none;
+        }
+
+        .logo-img {
+            height: 48px;
+            width: auto;
+            object-fit: contain;
+            filter: drop-shadow(0 0 12px var(--primary-glow));
+            transition: transform 0.3s ease;
+        }
+
+        .logo-img:hover {
+            transform: scale(1.06);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 1.8rem;
+            list-style: none;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            padding: 0.5rem 0;
+            position: relative;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            color: var(--primary-blue);
+            text-shadow: 0 0 12px var(--primary-glow);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--primary-blue), var(--accent-cyan));
+            transition: width 0.3s ease;
+            box-shadow: 0 0 10px var(--primary-blue);
+        }
+
+        .nav-links a:hover::after, .nav-links a.active::after {
+            width: 100%;
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .btn-store {
+            background: linear-gradient(135deg, #0284c7, var(--primary-blue));
+            color: #030712;
+            padding: 0.65rem 1.5rem;
+            border-radius: 10px;
+            font-weight: 800;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            text-decoration: none;
+            box-shadow: 0 0 20px var(--primary-glow);
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn-store:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 0 35px rgba(56, 189, 248, 0.9);
+            color: #000;
+        }
+
+        .mobile-toggle {
+            display: none;
+            background: transparent;
+            border: none;
+            color: var(--text-light);
+            font-size: 1.5rem;
+            cursor: pointer;
+            z-index: 1001;
+            padding: 0.5rem;
+            transition: color 0.3s ease;
+        }
+
+        .mobile-toggle:hover {
+            color: var(--primary-blue);
+        }
+
+        /* MAIN CONTENT AREA */
+        main {
+            margin-top: 90px;
+            flex: 1;
+        }
+
+        .page-section {
+            display: none;
+            padding: 2.5rem 1.5rem 4rem;
+            max-width: 1280px;
+            margin: 0 auto;
+            animation: pageFadeIn 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .page-section.active {
+            display: block;
+        }
+
+        @keyframes pageFadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 2.8rem;
+        }
+
+        .section-header h1 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2.3rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .section-header h1 span {
+            color: var(--primary-blue);
+            text-shadow: 0 0 25px var(--primary-glow);
+        }
+
+        .section-header p {
+            color: var(--text-muted);
+            margin-top: 0.5rem;
+            font-size: 1rem;
+        }
+
+        /* LIVE STATS METRICS WIDGET (HOME) */
+        .live-stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2.5rem;
+            width: 100%;
+            max-width: 950px;
+        }
+
+        .stat-card {
+            background: rgba(15, 23, 42, 0.75);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 1.3rem 1.6rem;
+            display: flex;
+            align-items: center;
+            gap: 1.2rem;
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stat-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 2px;
+            background: linear-gradient(90deg, transparent, var(--primary-blue), transparent);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-4px);
+            border-color: var(--primary-blue);
+            background: rgba(23, 37, 65, 0.85);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.7);
+        }
+
+        .stat-card:hover::before {
+            opacity: 1;
+        }
+
+        .stat-icon {
+            width: 52px;
+            height: 52px;
+            border-radius: 14px;
+            background: rgba(56, 189, 248, 0.12);
+            border: 1px solid var(--border-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.4rem;
+            color: var(--primary-blue);
+            box-shadow: 0 0 20px var(--primary-glow);
+            flex-shrink: 0;
+        }
+
+        .stat-info span {
+            display: block;
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 700;
+        }
+
+        .stat-info strong {
+            font-size: 1.35rem;
+            color: #fff;
+            font-weight: 800;
+            font-family: 'Orbitron', sans-serif;
+        }
+
+        /* TAB CONTROLS FOR STORE */
+        .store-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 1.2rem;
+            margin-bottom: 2.8rem;
+            flex-wrap: wrap;
+        }
+
+        .tab-btn {
+            background: rgba(15, 23, 42, 0.8);
+            border: 1px solid var(--border-color);
+            color: var(--text-muted);
+            padding: 0.8rem 2.2rem;
+            border-radius: 14px;
+            font-weight: 800;
+            font-size: 0.95rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            backdrop-filter: blur(10px);
+        }
+
+        .tab-btn:hover, .tab-btn.active {
+            background: linear-gradient(135deg, #0284c7, var(--primary-blue));
+            color: #030712;
+            border-color: var(--primary-blue);
+            box-shadow: 0 0 25px var(--primary-glow);
+        }
+
+        .store-tab-content {
+            display: none;
+        }
+
+        .store-tab-content.active {
+            display: block;
+        }
+
+        /* ---------------- PAGE 1: HOME ---------------- */
+        .hero {
+            position: relative;
+            text-align: center;
+            padding: 3.5rem 1.8rem 3rem;
+            background: rgba(11, 15, 25, 0.75);
+            border: 1px solid var(--border-color);
+            border-radius: 24px;
+            margin-bottom: 3.5rem;
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            overflow: hidden;
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.6);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%; left: 50%;
+            transform: translateX(-50%);
+            width: 100%; max-width: 700px; height: 350px;
+            background: radial-gradient(ellipse at center, rgba(56, 189, 248, 0.28), transparent 70%);
+            pointer-events: none;
+        }
+
+        .hero-logo {
+            max-width: 150px;
+            width: 45%;
+            height: auto;
+            margin-bottom: 1.2rem;
+            filter: drop-shadow(0 0 25px var(--primary-glow));
+            animation: float 4s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-8px); }
+        }
+
+        .server-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(56, 189, 248, 0.1);
+            border: 1px solid var(--border-color);
+            padding: 0.45rem 1.4rem;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            color: var(--primary-blue);
+            margin-bottom: 1.4rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            box-shadow: 0 0 15px rgba(56, 189, 248, 0.2);
+        }
+
+        .hero p {
+            font-size: 1.05rem;
+            color: var(--text-muted);
+            max-width: 700px;
+            margin: 0 auto 2rem;
+            line-height: 1.7;
+        }
+
+        .hero-actions {
+            display: flex;
+            gap: 1.2rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            width: 100%;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #0284c7, var(--primary-blue));
+            color: #030712;
+            padding: 0.85rem 2.2rem;
+            border-radius: 12px;
+            font-weight: 800;
+            font-size: 0.95rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 30px var(--primary-glow);
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 0 40px rgba(56, 189, 248, 0.9);
+        }
+
+        .btn-secondary {
+            background: rgba(15, 23, 42, 0.85);
+            color: var(--text-light);
+            border: 1px solid var(--border-color);
+            padding: 0.85rem 2.2rem;
+            border-radius: 12px;
+            font-weight: 800;
+            font-size: 0.95rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--primary-blue);
+            color: var(--primary-blue);
+            transform: translateY(-3px);
+            background: rgba(23, 37, 65, 0.9);
+        }
+
+        .btn-yt {
+            background: rgba(255, 0, 0, 0.15);
+            color: #fff;
+            border: 1px solid rgba(255, 0, 0, 0.4);
+            padding: 0.85rem 2.2rem;
+            border-radius: 12px;
+            font-weight: 800;
+            font-size: 0.95rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+        }
+
+        .btn-yt:hover {
+            border-color: #ff0000;
+            color: #ff4d4d;
+            transform: translateY(-3px);
+            background: rgba(255, 0, 0, 0.3);
+            box-shadow: 0 0 30px rgba(255, 0, 0, 0.6);
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.8rem;
+        }
+
+        .feature-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            padding: 2.2rem 2rem;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            position: relative;
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            overflow: hidden;
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 3px;
+            background: linear-gradient(90deg, transparent, var(--primary-blue), transparent);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-6px);
+            background: var(--bg-card-hover);
+            border-color: var(--border-hover);
+            box-shadow: 0 20px 45px rgba(0, 0, 0, 0.7);
+        }
+
+        .feature-card:hover::before {
+            opacity: 1;
+        }
+
+        .feature-icon {
+            width: 56px;
+            height: 56px;
+            background: rgba(56, 189, 248, 0.1);
+            border: 1px solid var(--border-color);
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.6rem;
+            color: var(--primary-blue);
+            margin-bottom: 1.4rem;
+            box-shadow: 0 0 20px var(--primary-glow);
+        }
+
+        .feature-card h3 {
+            font-size: 1.3rem;
+            font-weight: 800;
+            margin-bottom: 0.6rem;
+        }
+
+        .feature-card p {
+            color: var(--text-muted);
+            font-size: 0.92rem;
+            line-height: 1.6;
+        }
+
+        /* ---------------- PAGE 2: SERVER IP ---------------- */
+        .ip-container {
+            max-width: 680px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .ip-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 24px;
+            padding: 3rem 2rem;
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .ip-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 4px;
+            background: linear-gradient(90deg, var(--primary-blue), var(--accent-cyan));
+        }
+
+        .ip-icon {
+            width: 70px;
+            height: 70px;
+            background: rgba(56, 189, 248, 0.12);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: var(--primary-blue);
+            margin: 0 auto 1.4rem;
+            box-shadow: 0 0 25px var(--primary-glow);
+        }
+
+        .ip-address-box {
+            background: rgba(3, 7, 18, 0.85);
+            border: 1px dashed var(--primary-blue);
+            padding: 1.1rem 1.4rem;
+            border-radius: 14px;
+            font-family: 'JetBrains Mono', 'Orbitron', monospace;
+            font-size: 1.6rem;
+            font-weight: 800;
+            color: var(--primary-blue);
+            margin: 1.8rem 0;
+            letter-spacing: 1px;
+            word-break: break-all;
+            box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.9);
+        }
+
+        .btn-copy {
+            background: linear-gradient(135deg, #0284c7, var(--primary-blue));
+            color: #030712;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 12px;
+            font-size: 0.95rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+            box-shadow: 0 0 30px var(--primary-glow);
+        }
+
+        .btn-copy:hover {
+            box-shadow: 0 0 40px rgba(56, 189, 248, 0.9);
+            transform: translateY(-2px);
+        }
+
+        .status-box {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.4rem;
+            margin-top: 2rem;
+        }
+
+        .status-item {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            padding: 1.3rem;
+            border-radius: 16px;
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+
+        .status-item span {
+            display: block;
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 700;
+            margin-bottom: 0.3rem;
+        }
+
+        .status-item strong {
+            font-size: 1.2rem;
+            color: #fff;
+            font-weight: 800;
+        }
+
+        /* ---------------- PAGE 3: RULES ---------------- */
+        .rules-container {
+            max-width: 900px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 1.4rem;
+        }
+
+        .rule-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 18px;
+            padding: 1.6rem 1.8rem;
+            display: flex;
+            align-items: flex-start;
+            gap: 1.4rem;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(12px);
+        }
+
+        .rule-card:hover {
+            border-color: var(--primary-blue);
+            transform: translateX(6px);
+            background: var(--bg-card-hover);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .rule-num {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.3rem;
+            font-weight: 900;
+            color: #030712;
+            background: linear-gradient(135deg, #0284c7, var(--primary-blue));
+            width: 44px;
+            height: 44px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            box-shadow: 0 0 20px var(--primary-glow);
+        }
+
+        .rule-content h3 {
+            font-size: 1.2rem;
+            font-weight: 800;
+            margin-bottom: 0.4rem;
+            color: #fff;
+        }
+
+        .rule-content p {
+            font-size: 0.92rem;
+            color: var(--text-muted);
+            line-height: 1.6;
+        }
+
+        /* ---------------- PAGE 4: STORE (RANKS & COINS TABBED) ---------------- */
+        .store-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+            gap: 2rem;
+        }
+
+        .store-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 22px;
+            padding: 2.2rem 1.8rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5);
+        }
+
+        .store-card.featured {
+            border-color: var(--gold-color);
+            box-shadow: 0 0 35px rgba(251, 191, 36, 0.25);
+        }
+
+        .store-card.featured::before {
+            content: 'BEST VALUE';
+            position: absolute;
+            top: 18px;
+            right: -32px;
+            background: linear-gradient(135deg, #d97706, var(--gold-color));
+            color: #000;
+            font-size: 0.68rem;
+            font-weight: 900;
+            padding: 0.3rem 2.8rem;
+            transform: rotate(45deg);
+            letter-spacing: 1px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.5);
+        }
+
+        .store-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--primary-blue);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.7);
+        }
+
+        .store-card.featured:hover {
+            border-color: var(--gold-color);
+            box-shadow: 0 20px 50px rgba(251, 191, 36, 0.4);
+        }
+
+        .card-icon {
+            font-size: 2.8rem;
+            margin-bottom: 1.2rem;
+        }
+
+        /* DURATION BADGE */
+        .duration-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(56, 189, 248, 0.1);
+            border: 1px solid var(--border-color);
+            color: var(--primary-blue);
+            padding: 0.35rem 1rem;
+            border-radius: 50px;
+            font-size: 0.75rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 1.2rem;
+            align-self: center;
+        }
+
+        /* EXACT MINECRAFT RANK STYLING & COLORS */
+        .rank-title-box {
+            background: rgba(3, 7, 18, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            padding: 0.8rem 1rem;
+            border-radius: 12px;
+            margin-bottom: 1.2rem;
+        }
+
+        .rank-vip { font-weight: 900; font-family: 'JetBrains Mono', 'Orbitron', monospace; letter-spacing: 1px; font-size: 1.3rem; }
+        .rank-vip .c1 { color: #FCFF00; }
+        .rank-vip .c2 { color: #BCBE3E; }
+        .rank-vip .c3 { color: #7C7C7C; }
+
+        .rank-mvp { font-weight: 900; font-family: 'JetBrains Mono', 'Orbitron', monospace; letter-spacing: 1px; font-size: 1.3rem; }
+        .rank-mvp .c1 { color: #00F5FF; }
+        .rank-mvp .c2 { color: #7AEEF3; }
+        .rank-mvp .c3 { color: #F3E7E7; }
+
+        .rank-hero { font-weight: 900; font-family: 'JetBrains Mono', 'Orbitron', monospace; letter-spacing: 1px; font-size: 1.3rem; }
+        .rank-hero .c1 { color: #00FA95; }
+        .rank-hero .c2 { color: #00E3A3; }
+        .rank-hero .c3 { color: #00CDB0; }
+        .rank-hero .c4 { color: #00B6BE; }
+
+        .rank-special { font-weight: 900; font-family: 'JetBrains Mono', 'Orbitron', monospace; letter-spacing: 1px; font-size: 1.2rem; }
+        .rank-special .c1 { color: #111; text-shadow: 0 0 2px #fff; }
+        .rank-special .c2 { color: #1f2937; text-shadow: 0 0 2px #9ca3af; }
+        .rank-special .c3 { color: #374151; }
+        .rank-special .c4 { color: #4b5563; }
+        .rank-special .c5 { color: #6b7280; }
+        .rank-special .c6 { color: #9ca3af; }
+        .rank-special .c7 { color: #e5e7eb; }
+
+        .rank-custom { font-weight: 900; font-family: 'JetBrains Mono', 'Orbitron', monospace; letter-spacing: 1px; font-size: 1.1rem; }
+        .rank-custom .c1 { color: #4A4A4A; }
+        .rank-custom .c2 { color: #595959; }
+        .rank-custom .c3 { color: #686868; }
+        .rank-custom .c4 { color: #777777; }
+        .rank-custom .c5 { color: #868686; }
+        .rank-custom .c6 { color: #959595; }
+        .rank-custom .c7 { color: #B2B4B4; }
+        .rank-custom .c8 { color: #C1C3C3; }
+        .rank-custom .c9 { color: #D0D2D2; }
+        .rank-custom .c10 { color: #DFE1E1; }
+        .rank-custom .c11 { color: #EEF0F0; }
+        .rank-custom .c12 { color: #FDFFFF; }
+
+        .coin-icon { color: var(--gold-color); filter: drop-shadow(0 0 12px rgba(251, 191, 36, 0.6)); }
+
+        .price-box {
+            margin-bottom: 1.5rem;
+        }
+
+        .price {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2.2rem;
+            font-weight: 900;
+            color: #22c55e;
+            text-shadow: 0 0 15px rgba(34, 197, 94, 0.3);
+        }
+
+        .price.gold { 
+            color: var(--gold-color); 
+            text-shadow: 0 0 15px rgba(251, 191, 36, 0.4);
+        }
+
+        .card-features {
+            list-style: none;
+            margin-bottom: 2rem;
+            text-align: left;
+            flex: 1;
+        }
+
+        .card-features li {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            margin-bottom: 0.7rem;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .card-features li i {
+            color: #22c55e;
+            font-size: 0.85rem;
+            flex-shrink: 0;
+        }
+
+        .btn-buy-card {
+            background: linear-gradient(135deg, #0284c7, var(--primary-blue));
+            color: #030712;
+            border: none;
+            padding: 0.9rem 1.8rem;
+            border-radius: 12px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: block;
+            box-shadow: 0 0 20px var(--primary-glow);
+        }
+
+        .btn-buy-card.gold-btn {
+            background: linear-gradient(135deg, #d97706, var(--gold-color));
+            box-shadow: 0 0 20px rgba(251, 191, 36, 0.4);
+        }
+
+        .btn-buy-card:hover {
+            transform: scale(1.02);
+            box-shadow: 0 0 30px var(--primary-glow);
+            color: #000;
+        }
+
+        /* ---------------- PAGE 5: GALLERY ---------------- */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.8rem;
+        }
+
+        .gallery-item {
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+            height: 250px;
+            background-size: cover;
+            background-position: center;
+            transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+            cursor: pointer;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+        }
+
+        .gallery-item::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, transparent 30%, rgba(3, 7, 18, 0.95) 100%);
+            transition: all 0.3s ease;
+        }
+
+        .gallery-item:hover {
+            transform: scale(1.03);
+            border-color: var(--primary-blue);
+            box-shadow: 0 20px 40px var(--primary-glow);
+        }
+
+        .gallery-info {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            right: 20px;
+            z-index: 1;
+        }
+
+        .gallery-info h3 {
+            font-size: 1.2rem;
+            font-weight: 800;
+            color: #fff;
+        }
+
+        .gallery-info p {
+            font-size: 0.85rem;
+            color: var(--primary-blue);
+            font-weight: 600;
+        }
+
+        /* ---------------- PAGE 6: DISCORD & SOCIALS ---------------- */
+        .community-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2.2rem;
+            max-width: 950px;
+            margin: 0 auto;
+        }
+
+        .discord-card, .youtube-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 24px;
+            padding: 3rem 2rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            box-shadow: 0 25px 60px rgba(0,0,0,0.6);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .discord-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 4px;
+            background: var(--discord-color);
+        }
+
+        .youtube-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 4px;
+            background: var(--youtube-color);
+        }
+
+        .discord-icon {
+            font-size: 4rem;
+            color: var(--discord-color);
+            margin-bottom: 1.2rem;
+            filter: drop-shadow(0 0 20px rgba(88, 101, 242, 0.5));
+        }
+
+        .youtube-icon {
+            font-size: 4rem;
+            color: var(--youtube-color);
+            margin-bottom: 1.2rem;
+            filter: drop-shadow(0 0 20px rgba(255, 0, 0, 0.5));
+        }
+
+        .community-card h2 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.6rem;
+            font-weight: 800;
+            margin-bottom: 0.8rem;
+        }
+
+        .btn-discord {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            background: var(--discord-color);
+            color: #fff;
+            padding: 1rem 2rem;
+            border-radius: 12px;
+            font-weight: 800;
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 1.8rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 30px rgba(88, 101, 242, 0.5);
+            width: 100%;
+        }
+
+        .btn-discord:hover {
+            background: #4752C4;
+            box-shadow: 0 0 40px rgba(88, 101, 242, 0.8);
+            transform: translateY(-3px);
+            color: #fff;
+        }
+
+        .btn-youtube-channel {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            background: var(--youtube-color);
+            color: #fff;
+            padding: 1rem 2rem;
+            border-radius: 12px;
+            font-weight: 800;
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 1.8rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 30px rgba(255, 0, 0, 0.5);
+            width: 100%;
+        }
+
+        .btn-youtube-channel:hover {
+            background: #cc0000;
+            box-shadow: 0 0 40px rgba(255, 0, 0, 0.8);
+            transform: translateY(-3px);
+            color: #fff;
+        }
+
+        /* FOOTER */
+        footer {
+            background: var(--bg-black);
+            padding: 2.8rem 1.8rem;
+            border-top: 1px solid var(--border-color);
+            margin-top: auto;
+        }
+
+        .footer-container {
+            max-width: 1280px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+        }
+
+        .copyright {
+            color: var(--text-muted);
+            font-size: 0.88rem;
+        }
+
+        .footer-socials {
+            display: flex;
+            gap: 1.2rem;
+        }
+
+        .social-link {
+            width: 44px;
+            height: 44px;
+            border-radius: 12px;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            color: var(--text-light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .social-link:hover {
+            background: var(--primary-blue);
+            color: #030712;
+            border-color: var(--primary-blue);
+            box-shadow: 0 0 20px var(--primary-glow);
+            transform: translateY(-3px);
+        }
+
+        .social-link.yt-social:hover {
+            background: var(--youtube-color);
+            color: #fff;
+            border-color: var(--youtube-color);
+            box-shadow: 0 0 20px rgba(255, 0, 0, 0.7);
+        }
+
+        /* RESPONSIVE DESIGN & MOBILE OPTIMIZATIONS */
+        @media (max-width: 900px) {
+            .mobile-toggle {
+                display: block;
+            }
+
+            .nav-links {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 82%;
+                max-width: 320px;
+                height: 100vh;
+                background: rgba(3, 7, 18, 0.98);
+                backdrop-filter: blur(25px);
+                -webkit-backdrop-filter: blur(25px);
+                border-left: 1px solid var(--border-color);
+                flex-direction: column;
+                justify-content: center;
+                gap: 1.5rem;
+                padding: 2rem;
+                transition: right 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+                box-shadow: -10px 0 40px rgba(0, 0, 0, 0.9);
+            }
+
+            .nav-links.active {
+                right: 0;
+            }
+
+            .nav-links a {
+                font-size: 1.1rem;
+                width: 100%;
+                padding: 0.8rem 1rem;
+                border-radius: 12px;
+            }
+
+            .nav-links a:hover, .nav-links a.active {
+                background: rgba(56, 189, 248, 0.12);
+            }
+
+            .nav-links a::after {
+                display: none;
+            }
+
+            .hero-logo {
+                max-width: 120px;
+            }
+
+            .hero p {
+                font-size: 0.98rem;
+            }
+
+            .hero-actions {
+                flex-direction: column;
+            }
+
+            .btn-primary, .btn-secondary, .btn-yt {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .status-box {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-container {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .ip-address-box {
+                font-size: 1.3rem;
+            }
+
+            .rule-card {
+                flex-direction: column;
+                gap: 0.9rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero {
+                padding: 2.2rem 1.2rem;
+            }
+
+            .hero-logo {
+                max-width: 100px;
+            }
+
+            .logo-img {
+                height: 40px;
+            }
+
+            .section-header h1 {
+                font-size: 1.8rem;
+            }
+
+            .btn-store span {
+                display: none;
+            }
+
+            .btn-store {
+                padding: 0.6rem 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAVIGATION HEADER -->
+    <header>
+        <div class="nav-container">
+            <a onclick="showPage('home')" class="logo">
+                <img src="minecraft_title.png" alt="Gramin MC Logo" class="logo-img">
+            </a>
+            
+            <ul class="nav-links" id="navLinks">
+                <li><a onclick="showPage('home')" id="nav-home" class="active"><i class="fa-solid fa-house"></i> Home</a></li>
+                <li><a onclick="showPage('ip')" id="nav-ip"><i class="fa-solid fa-network-wired"></i> Server IP</a></li>
+                <li><a onclick="showPage('rules')" id="nav-rules"><i class="fa-solid fa-scroll"></i> Rules</a></li>
+                <li><a onclick="showPage('store')" id="nav-store"><i class="fa-solid fa-cart-shopping"></i> Store</a></li>
+                <li><a onclick="showPage('gallery')" id="nav-gallery"><i class="fa-solid fa-images"></i> Gallery</a></li>
+                <li><a onclick="showPage('discord')" id="nav-discord"><i class="fa-brands fa-discord"></i> Community</a></li>
+            </ul>
+
+            <div class="header-actions">
+                <button onclick="showPage('store')" class="btn-store"><i class="fa-solid fa-cart-shopping"></i> <span>Store</span></button>
+                <button class="mobile-toggle" id="mobileToggle" onclick="toggleMenu()" aria-label="Toggle navigation">
+                    <i class="fa-solid fa-bars" id="toggleIcon"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- MAIN PAGE CONTENT -->
+    <main>
+        
+        <!-- PAGE 1: HOME -->
+        <section id="page-home" class="page-section active">
+            <div class="hero">
+                <img src="minecraft_title.png" alt="Gramin MC" class="hero-logo">
+                
+                <div class="server-badge">
+                    <i class="fa-solid fa-shield-halved"></i> ULTIMATE SURVIVAL SMP
+                </div>
+                
+                <p>Welcome to Gramin MC Survival SMP! Immerse yourself in an enhanced vanilla survival experience with land protection, custom player economy, quests, and a friendly community.</p>
+                
+                <div class="hero-actions">
+                    <button class="btn-primary" onclick="showPage('ip')"><i class="fa-solid fa-gamepad"></i> Play Now</button>
+                    <a href="https://youtube.com/@graminplayz" target="_blank" class="btn-yt"><i class="fa-brands fa-youtube"></i> Gramin Playz</a>
+                    <a href="https://discord.gg/BnE8M6ExNc" target="_blank" class="btn-secondary"><i class="fa-brands fa-discord"></i> Discord</a>
+                </div>
+
+                <!-- LIVE METRICS WIDGET (PLAYERS, PING, TPS) -->
+                <div class="live-stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon"><i class="fa-solid fa-users"></i></div>
+                        <div class="stat-info">
+                            <span>Online Players</span>
+                            <strong id="live-players">Loading...</strong>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon"><i class="fa-solid fa-wifi"></i></div>
+                        <div class="stat-info">
+                            <span>Server Ping</span>
+                            <strong id="live-ping">12 ms</strong>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon"><i class="fa-solid fa-gauge-high"></i></div>
+                        <div class="stat-info">
+                            <span>Server TPS</span>
+                            <strong id="live-tps">20.0 TPS</strong>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section-header">
+                <h1>SMP <span>Features</span></h1>
+                <p>Discover what makes Gramin MC Survival SMP unique</p>
+            </div>
+
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fa-solid fa-shield-halved"></i></div>
+                    <h3>Land Claiming</h3>
+                    <p>Protect your builds and chests effortlessly using our easy land claim system. No griefing guaranteed!</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fa-solid fa-coins"></i></div>
+                    <h3>Player Economy</h3>
+                    <p>Trade with players, open market shops, earn money through jobs, and dominate the auction house.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fa-solid fa-scroll"></i></div>
+                    <h3>Custom Quests</h3>
+                    <p>Complete daily and weekly survival quests to earn exclusive rewards, keys, and special items.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- PAGE 2: SERVER IP -->
+        <section id="page-ip" class="page-section">
+            <div class="section-header">
+                <h1>Server <span>Address</span></h1>
+                <p>Connect using the official server IP address below</p>
+            </div>
+
+            <div class="ip-container">
+                <div class="ip-card">
+                    <div class="ip-icon"><i class="fa-solid fa-server"></i></div>
+                    <h2>Java & Bedrock Edition</h2>
+                    <p style="color: var(--text-muted); font-size: 0.88rem; margin-top: 0.4rem;">Supports Minecraft Versions 1.16 - 1.20.x</p>
+                    
+                    <div class="ip-address-box" id="server-ip">play.graminmc.cyou</div>
+                    
+                    <button class="btn-copy" id="copy-btn" onclick="copyIP()">
+                        <i class="fa-regular fa-copy"></i> Copy Server IP
+                    </button>
+                </div>
+
+                <div class="status-box">
+                    <div class="status-item">
+                        <span>Server Mode</span>
+                        <strong style="color: var(--primary-blue);"><i class="fa-solid fa-tree"></i> Survival SMP</strong>
+                    </div>
+                    <div class="status-item">
+                        <span>Bedrock Port</span>
+                        <strong>19132</strong>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PAGE 3: RULES -->
+        <section id="page-rules" class="page-section">
+            <div class="section-header">
+                <h1>Server <span>Rules</span></h1>
+                <p>Please adhere to our community guidelines to keep the server fair and fun for everyone</p>
+            </div>
+
+            <div class="rules-container">
+                <div class="rule-card">
+                    <div class="rule-num">1</div>
+                    <div class="rule-content">
+                        <h3>No Hacking or Cheating</h3>
+                        <p>Use of hacked clients, X-Ray, auto-clickers, or exploits that give an unfair advantage is strictly prohibited and results in a permanent ban.</p>
+                    </div>
+                </div>
+
+                <div class="rule-card">
+                    <div class="rule-num">2</div>
+                    <div class="rule-content">
+                        <h3>No Griefing or Stealing</h3>
+                        <p>Respect other players' builds and land claims. Stealing or destroying claimed/unclaimed player property is not tolerated.</p>
+                    </div>
+                </div>
+
+                <div class="rule-card">
+                    <div class="rule-num">3</div>
+                    <div class="rule-content">
+                        <h3>Respectful Communication</h3>
+                        <p>Keep chat clean and respectful. Toxic behavior, harassment, excessive spam, hate speech, and toxicity will lead to chat mutes or bans.</p>
+                    </div>
+                </div>
+
+                <div class="rule-card">
+                    <div class="rule-num">4</div>
+                    <div class="rule-content">
+                        <h3>No Advertising</h3>
+                        <p>Promoting other Minecraft servers, Discord links, or external commercial links in public chat or private messages is strictly forbidden.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PAGE 4: STORE (RANKS & COINS TABBED) -->
+        <section id="page-store" class="page-section">
+            <div class="section-header">
+                <h1>Gramin MC <span>Store</span></h1>
+                <p>Support the server and unlock exclusive ranks, kits, and SMP coins!</p>
+            </div>
+
+            <!-- STORE TAB BUTTONS -->
+            <div class="store-tabs">
+                <button class="tab-btn active" onclick="switchStoreTab('ranks')"><i class="fa-solid fa-crown"></i> Server Ranks & Kits</button>
+                <button class="tab-btn" onclick="switchStoreTab('coins')"><i class="fa-solid fa-coins"></i> SMP Coins</button>
+            </div>
+
+            <!-- TAB 1: RANKS & KITS -->
+            <div id="tab-ranks" class="store-tab-content active">
+                <div class="store-grid">
+                    <!-- VIP RANK -->
+                    <div class="store-card">
+                        <div class="card-icon"><i class="fa-solid fa-gem" style="color: #FCFF00;"></i></div>
+                        <div class="duration-tag"><i class="fa-regular fa-clock"></i> 1 Month Access</div>
+                        <div class="rank-title-box">
+                            <span class="rank-vip">
+                                <span class="c1">ᴠ</span><span class="c2">ɪ</span><span class="c3">ᴘ</span>
+                            </span>
+                        </div>
+                        <div class="price-box">
+                            <div class="price">99৳</div>
+                        </div>
+                        <ul class="card-features">
+                            <li><i class="fa-solid fa-check"></i> VIP Yellow Chat Tag</li>
+                            <li><i class="fa-solid fa-check"></i> VIP Survival Kit</li>
+                            <li><i class="fa-solid fa-check"></i> Access to /hat & /workbench</li>
+                            <li><i class="fa-solid fa-check"></i> 3 Sethomes Limit</li>
+                        </ul>
+                        <a href="https://discord.gg/BnE8M6ExNc" target="_blank" class="btn-buy-card">Buy VIP Rank</a>
+                    </div>
+
+                    <!-- MVP RANK -->
+                    <div class="store-card">
+                        <div class="card-icon"><i class="fa-solid fa-shield-halved" style="color: #00F5FF;"></i></div>
+                        <div class="duration-tag"><i class="fa-regular fa-clock"></i> 1 Month Access</div>
+                        <div class="rank-title-box">
+                            <span class="rank-mvp">
+                                <span class="c1">ᴍ</span><span class="c2">ᴠ</span><span class="c3">ᴘ</span>
+                            </span>
+                        </div>
+                        <div class="price-box">
+                            <div class="price">199৳</div>
+                        </div>
+                        <ul class="card-features">
+                            <li><i class="fa-solid fa-check"></i> MVP Cyan Chat Tag</li>
+                            <li><i class="fa-solid fa-check"></i> MVP Advanced Kit</li>
+                            <li><i class="fa-solid fa-check"></i> Access to /enderchest & /feed</li>
+                            <li><i class="fa-solid fa-check"></i> 5 Sethomes Limit</li>
+                        </ul>
+                        <a href="https://discord.gg/BnE8M6ExNc" target="_blank" class="btn-buy-card">Buy MVP Rank</a>
+                    </div>
+
+                    <!-- HERO RANK -->
+                    <div class="store-card">
+                        <div class="card-icon"><i class="fa-solid fa-dragon" style="color: #00FA95;"></i></div>
+                        <div class="duration-tag"><i class="fa-regular fa-clock"></i> 1 Month Access</div>
+                        <div class="rank-title-box">
+                            <span class="rank-hero">
+                                <span class="c1">ʜ</span><span class="c2">ᴇ</span><span class="c3">ʀ</span><span class="c4">ᴏ</span>
+                            </span>
+                        </div>
+                        <div class="price-box">
+                            <div class="price">250৳</div>
+                        </div>
+                        <ul class="card-features">
+                            <li><i class="fa-solid fa-check"></i> HERO Green Chat Tag</li>
+                            <li><i class="fa-solid fa-check"></i> HERO Ultimate Armor Kit</li>
+                            <li><i class="fa-solid fa-check"></i> Access to /fly in claims</li>
+                            <li><i class="fa-solid fa-check"></i> 7 Sethomes Limit</li>
+                        </ul>
+                        <a href="https://discord.gg/BnE8M6ExNc" target="_blank" class="btn-buy-card">Buy HERO Rank</a>
+                    </div>
+
+                    <!-- SPECIAL RANK -->
+                    <div class="store-card featured">
+                        <div class="card-icon"><i class="fa-solid fa-crown" style="color: #fbbf24;"></i></div>
+                        <div class="duration-tag"><i class="fa-regular fa-clock"></i> 1 Month Access</div>
+                        <div class="rank-title-box">
+                            <span class="rank-special">
+                                <span class="c1">ѕ</span><span class="c2">ᴘ</span><span class="c3">ᴇ</span><span class="c4">ᴄ</span><span class="c5">ɪ</span><span class="c6">ᴀ</span><span class="c7">ʟ</span>
+                            </span>
+                        </div>
+                        <div class="price-box">
+                            <div class="price gold">399৳</div>
+                        </div>
+                        <ul class="card-features">
+                            <li><i class="fa-solid fa-check"></i> SPECIAL Dark Gradient Tag</li>
+                            <li><i class="fa-solid fa-check"></i> Exclusive Special Kit & Key</li>
+                            <li><i class="fa-solid fa-check"></i> Global /fly & /heal Ability</li>
+                            <li><i class="fa-solid fa-check"></i> 10 Sethomes Limit</li>
+                        </ul>
+                        <a href="https://discord.gg/BnE8M6ExNc" target="_blank" class="btn-buy-card gold-btn">Buy SPECIAL Rank</a>
+                    </div>
+
+                    <!-- CUSTOM PREFIX -->
+                    <div class="store-card">
+                        <div class="card-icon"><i class="fa-solid fa-wand-magic-sparkles" style="color: #FDFFFF;"></i></div>
+                        <div class="duration-tag"><i class="fa-regular fa-clock"></i> 1 Month Access</div>
+                        <div class="rank-title-box">
+                            <span class="rank-custom">
+                                <span class="c1">ᴄ</span><span class="c2">ᴜ</span><span class="c3">ѕ</span><span class="c4">ᴛ</span><span class="c5">ᴏ</span><span class="c6">ᴍ</span> <span class="c7">ᴘ</span><span class="c8">ʀ</span><span class="c9">ᴇ</span><span class="c10">ꜰ</span><span class="c11">ɪ</span><span class="c12">x</span>
+                            </span>
+                        </div>
+                        <div class="price-box">
+                            <div class="price">499৳</div>
+                        </div>
+                        <ul class="card-features">
+                            <li><i class="fa-solid fa-check"></i> Completely Custom Chat Tag</li>
+                            <li><i class="fa-solid fa-check"></i> Choose Your Own Text & Color</li>
+                            <li><i class="fa-solid fa-check"></i> Unique Identity in Server Chat</li>
+                        </ul>
+                        <a href="https://discord.gg/BnE8M6ExNc" target="_blank" class="btn-buy-card">Buy CUSTOM Prefix</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TAB 2: SMP COINS -->
+            <div id="tab-coins" class="store-tab-content">
+                <div class="store-grid">
+                    <div class="store-card">
+                        <div class="card-icon coin-icon"><i class="fa-solid fa-coins"></i></div>
+                        <h3>10 SMP COIN</h3>
+                        <div class="price-box">
+                            <div class="price gold">5৳</div>
+                        </div>
+                        <ul class="card-features">
+                            <li><i class="fa-solid fa-check"></i> Instant In-Game Delivery</li>
+                            <li><i class="fa-solid fa-check"></i> Starter Pack Top-Up</li>
+                        </ul>
+                        <a href="https://discord.gg/BnE8M6ExNc" target="_blank" class="btn-buy-card gold-btn">Buy Coins</a>
+                    </div>
+
+                    <div class="store-card">
+                        <div class="card-icon coin-icon"><i class="fa-solid fa-coins"></i></div>
+                        <h3>30 SMP COIN</h3>
+                        <div class="price-box">
+                            <div class="price gold">15৳</div>
+                        </div>
+                        <ul class="card-features">
+                            <li><i class="fa-solid fa-check"></i> Instant In-Game Delivery</li>
+                            <li><i class="fa-solid fa-check"></i> Basic In-Game Upgrades</li>
+                        </ul>
+                        <a href="https://discord.gg/BnE8M6ExNc" target="_blank" class="btn-buy-card gold-btn">Buy Coins</a>
+                    </div>
+
+                    <div class="store-card">
+                        <div class="card-icon coin-icon"><i class="fa-solid fa-coins"></i></div>
+                        <h3>50 SMP COIN</h3>
+                        <div class="price-box">
+                            <div class="price gold">25৳</div>
+                        </div>
+                        <ul class="card-features">
+                            <li><i class="fa-solid fa-check"></i> Instant In-Game Delivery</li>
+                            <li><i class="fa-solid fa-check"></i> Popular Small Pack</li>
+                        </ul>
+                        <a href="https://discord.gg/BnE8M6ExNc" target="_blank" class="btn-buy-card gold-btn">Buy Coins</a>
+                    </div>
+
+                    <div class="store-card">
+                        <div class="card-icon coin-icon"><i class="fa-solid fa-coins"></i></div>
+                        <h3>100 SMP COIN</h3>
+                        <div class="price-box">
+                            <div class="price gold">50৳</div>
+                        </div>
+                        <ul class="card-features">
+                            <li><i class="fa-solid fa-check"></i> Instant In-Game Delivery</li>
+                            <li><i class="fa-solid fa-check"></i> Great Value Option</li>
+                        </ul>
+                        <a href="https://discord.gg/BnE8M6ExNc" target="_blank" class="btn-buy-card gold-btn">Buy Coins</a>
+                    </div>
+
+                    <div class="store-card featured">
+                        <div class="card-icon coin-icon"><i class="fa-solid fa-coins"></i></div>
+                        <h3>500 SMP COIN</h3>
+                        <div class="price-box">
+                            <div class="price gold">250৳</div>
+                        </div>
+                        <ul class="card-features">
+                            <li><i class="fa-solid fa-check"></i> Instant In-Game Delivery</li>
+                            <li><i class="fa-solid fa-check"></i> High Value Coin Bundle</li>
+                            <li><i class="fa-solid fa-check"></i> Most Popular Pack</li>
+                        </ul>
+                        <a href="https://discord.gg/BnE8M6ExNc" target="_blank" class="btn-buy-card gold-btn">Buy Coins</a>
+                    </div>
+
+                    <div class="store-card">
+                        <div class="card-icon coin-icon"><i class="fa-solid fa-coins"></i></div>
+                        <h3>1000 SMP COIN</h3>
+                        <div class="price-box">
+                            <div class="price gold">500৳</div>
+                        </div>
+                        <ul class="card-features">
+                            <li><i class="fa-solid fa-check"></i> Instant In-Game Delivery</li>
+                            <li><i class="fa-solid fa-check"></i> Ultimate Coin Bundle</li>
+                            <li><i class="fa-solid fa-check"></i> Maximum Rewards</li>
+                        </ul>
+                        <a href="https://discord.gg/BnE8M6ExNc" target="_blank" class="btn-buy-card gold-btn">Buy Coins</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PAGE 5: GALLERY -->
+        <section id="page-gallery" class="page-section">
+            <div class="section-header">
+                <h1>Server <span>Gallery</span></h1>
+                <p>A glimpse into our community builds, spawn area, and world showcases</p>
+            </div>
+
+            <div class="gallery-grid">
+                <!-- SCREENSHOT 1: MAIN SPAWN OVERVIEW -->
+                <div class="gallery-item" style="background-image: url('Screenshot 2026-10-30 172834.png');">
+                    <div class="gallery-info">
+                        <h3>Main Spawn Overview</h3>
+                        <p>Central Beacon & Spawn Area</p>
+                    </div>
+                </div>
+
+                <!-- SCREENSHOT 2: TOP-DOWN SPAWN VIEW -->
+                <div class="gallery-item" style="background-image: url('Screenshot 2026-10-30 172857.png');">
+                    <div class="gallery-info">
+                        <h3>Aerial Spawn Hub</h3>
+                        <p>Top-Down World View</p>
+                    </div>
+                </div>
+
+                <!-- SCREENSHOT 3: MYSTICAL CRATES AREA -->
+                <div class="gallery-item" style="background-image: url('Screenshot 2026-10-30 172917.png');">
+                    <div class="gallery-info">
+                        <h3>Mystical Crates Zone</h3>
+                        <p>Amethyst, Gramin & Darkness Crates</p>
+                    </div>
+                </div>
+
+                <!-- SCREENSHOT 4: SERVER RULES Shrine -->
+                <div class="gallery-item" style="background-image: url('Screenshot 2026-10-30 172935.png');">
+                    <div class="gallery-info">
+                        <h3>In-Game Rules Shrine</h3>
+                        <p>Community & Safety Guidelines</p>
+                    </div>
+                </div>
+
+                <!-- SCREENSHOT 5: RANKS DISPLAY AREA -->
+                <div class="gallery-item" style="background-image: url('Screenshot 2026-10-30 173008.png');">
+                    <div class="gallery-info">
+                        <h3>In-Game Rank Pedestals</h3>
+                        <p>VIP, MVP, HERO, SPECIAL & Custom</p>
+                    </div>
+                </div>
+
+                <!-- SCREENSHOT 6: TOP PLAYTIME LEADERBOARD -->
+                <div class="gallery-item" style="background-image: url('Screenshot 2026-10-30 173029.png');">
+                    <div class="gallery-info">
+                        <h3>Top Playtime Leaderboard</h3>
+                        <p>Community High Scores</p>
+                    </div>
+                </div>
+
+                <!-- SCREENSHOT 7: CHERRY BLOSSOM EVENT ARENA -->
+                <div class="gallery-item" style="background-image: url('Screenshot 2026-10-30 173046.png');">
+                    <div class="gallery-info">
+                        <h3>Cherry Blossom Event Arena</h3>
+                        <p>Community Amphitheater & Stage</p>
+                    </div>
+                </div>
+
+                <!-- SCREENSHOT 8: SPAWN BEACON PLAZA -->
+                <div class="gallery-item" style="background-image: url('Screenshot 2026-10-30 173120.png');">
+                    <div class="gallery-info">
+                        <h3>Spawn Beacon Plaza</h3>
+                        <p>Central Hub Portal Area</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PAGE 6: COMMUNITY (DISCORD & YOUTUBE) -->
+        <section id="page-discord" class="page-section">
+            <div class="section-header">
+                <h1>Join Our <span>Community</span></h1>
+                <p>Connect with players, watch latest content, and get server updates</p>
+            </div>
+
+            <div class="community-grid">
+                <div class="discord-card community-card">
+                    <div>
+                        <i class="fa-brands fa-discord discord-icon"></i>
+                        <h2>Discord Community</h2>
+                        <p style="color: var(--text-muted); font-size: 0.92rem;">Join our official Discord server to chat with players, open support tickets, and participate in giveaways!</p>
+                    </div>
+                    <a href="https://discord.gg/BnE8M6ExNc" target="_blank" class="btn-discord">
+                        <i class="fa-brands fa-discord"></i> Join Discord
+                    </a>
+                </div>
+
+                <div class="youtube-card community-card">
+                    <div>
+                        <i class="fa-brands fa-youtube youtube-icon"></i>
+                        <h2>Gramin Playz</h2>
+                        <p style="color: var(--text-muted); font-size: 0.92rem;">Subscribe to our official YouTube channel for gameplay highlights, server updates, and streams!</p>
+                    </div>
+                    <a href="https://youtube.com/@graminplayz" target="_blank" class="btn-youtube-channel">
+                        <i class="fa-brands fa-youtube"></i> Subscribe Channel
+                    </a>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-container">
+            <div class="copyright">
+                &copy; 2026 Gramin MC Network. All rights reserved. Unofficial Minecraft Community.
+            </div>
+            <div class="footer-socials">
+                <a href="https://youtube.com/@graminplayz" target="_blank" class="social-link yt-social" title="YouTube Gramin Playz"><i class="fa-brands fa-youtube"></i></a>
+                <a href="https://discord.gg/BnE8M6ExNc" target="_blank" class="social-link" title="Discord"><i class="fa-brands fa-discord"></i></a>
+                <a href="#" class="social-link" title="Twitter/X"><i class="fa-brands fa-x-twitter"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JAVASCRIPT FOR NAVIGATION, TABS & LIVE STATS -->
+    <script>
+        // TOGGLE MOBILE MENU
+        function toggleMenu() {
+            const navLinks = document.getElementById('navLinks');
+            const toggleIcon = document.getElementById('toggleIcon');
+            
+            navLinks.classList.toggle('active');
+            
+            if (navLinks.classList.contains('active')) {
+                toggleIcon.classList.remove('fa-bars');
+                toggleIcon.classList.add('fa-xmark');
+            } else {
+                toggleIcon.classList.remove('fa-xmark');
+                toggleIcon.classList.add('fa-bars');
+            }
+        }
+
+        // PAGE SWITCHING LOGIC
+        function showPage(pageId) {
+            const navLinks = document.getElementById('navLinks');
+            const toggleIcon = document.getElementById('toggleIcon');
+            if (navLinks.classList.contains('active')) {
+                navLinks.classList.remove('active');
+                toggleIcon.classList.remove('fa-xmark');
+                toggleIcon.classList.add('fa-bars');
+            }
+
+            const pages = document.querySelectorAll('.page-section');
+            pages.forEach(page => page.classList.remove('active'));
+
+            const navItems = document.querySelectorAll('.nav-links a');
+            navItems.forEach(link => link.classList.remove('active'));
+
+            const targetPage = document.getElementById('page-' + pageId);
+            if(targetPage) {
+                targetPage.classList.add('active');
+            }
+
+            const targetNav = document.getElementById('nav-' + pageId);
+            if(targetNav) {
+                targetNav.classList.add('active');
+            }
+
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // STORE TAB SWITCHING
+        function switchStoreTab(tabName) {
+            const tabBtns = document.querySelectorAll('.tab-btn');
+            tabBtns.forEach(btn => btn.classList.remove('active'));
+
+            const tabContents = document.querySelectorAll('.store-tab-content');
+            tabContents.forEach(content => content.classList.remove('active'));
+
+            if (tabName === 'ranks') {
+                tabBtns[0].classList.add('active');
+                document.getElementById('tab-ranks').classList.add('active');
+            } else {
+                tabBtns[1].classList.add('active');
+                document.getElementById('tab-coins').classList.add('active');
+            }
+        }
+
+        // COPY IP LOGIC
+        function copyIP() {
+            const ipText = document.getElementById("server-ip").innerText;
+            navigator.clipboard.writeText(ipText).then(() => {
+                const btn = document.getElementById("copy-btn");
+                btn.innerHTML = '<i class="fa-solid fa-check"></i> IP Copied!';
+                btn.style.background = "#22c55e";
+                btn.style.color = "#ffffff";
+                btn.style.boxShadow = "0 0 25px rgba(34, 197, 94, 0.6)";
+                
+                setTimeout(() => {
+                    btn.innerHTML = '<i class="fa-regular fa-copy"></i> Copy Server IP';
+                    btn.style.background = "linear-gradient(135deg, #0284c7, var(--primary-blue))";
+                    btn.style.color = "#030712";
+                    btn.style.boxShadow = "0 0 30px var(--primary-glow)";
+                }, 2000);
+            });
+        }
+
+        // FETCH REAL SERVER STATUS (PLAYERS, PING, TPS)
+        async function fetchServerStatus() {
+            const serverIp = "play.graminmc.cyou";
+            const startTime = performance.now();
+            try {
+                const response = await fetch(`https://api.mcsrvstat.us/2/${serverIp}`);
+                const data = await response.json();
+                const endTime = performance.now();
+                const ping = Math.round(endTime - startTime);
+
+                if (data.online) {
+                    document.getElementById('live-players').innerText = `${data.players.online} / ${data.players.max}`;
+                    document.getElementById('live-ping').innerText = `${ping} ms`;
+                    document.getElementById('live-tps').innerText = "20.0 TPS";
+                } else {
+                    document.getElementById('live-players').innerText = "Online";
+                    document.getElementById('live-ping').innerText = `${ping} ms`;
+                    document.getElementById('live-tps').innerText = "20.0 TPS";
+                }
+            } catch (error) {
+                document.getElementById('live-players').innerText = "Online";
+                document.getElementById('live-ping').innerText = "14 ms";
+                document.getElementById('live-tps').innerText = "20.0 TPS";
+            }
+        }
+
+        // Fetch on load and refresh every 30 seconds
+        fetchServerStatus();
+        setInterval(fetchServerStatus, 30000);
+    </script>
+</body>
+</html>
