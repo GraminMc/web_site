@@ -4,6 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gramin MC | Ultimate Survival SMP</title>
+    <!-- FAVICON / BROWSER TAB ICON -->
+    <link rel="icon" type="image/png" href="minecraft_title.png">
+    <link rel="shortcut icon" type="image/png" href="minecraft_title.png">
+    <link rel="apple-touch-icon" href="minecraft_title.png">
+
     <!-- Google Fonts & FontAwesome -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -566,6 +571,13 @@
             box-shadow: 0 0 20px var(--primary-glow);
         }
 
+        .feature-icon.raid-icon {
+            background: rgba(239, 68, 68, 0.12);
+            border-color: rgba(239, 68, 68, 0.3);
+            color: var(--red-color);
+            box-shadow: 0 0 20px rgba(239, 68, 68, 0.35);
+        }
+
         .feature-card h3 {
             font-size: 1.3rem;
             font-weight: 800;
@@ -618,6 +630,20 @@
             box-shadow: 0 0 25px var(--primary-glow);
         }
 
+        .version-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(34, 197, 94, 0.12);
+            border: 1px solid rgba(34, 197, 94, 0.35);
+            color: var(--green-color);
+            padding: 0.4rem 1.2rem;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 800;
+            margin-top: 0.6rem;
+        }
+
         .ip-address-box {
             background: rgba(3, 7, 18, 0.85);
             border: 1px dashed var(--primary-blue);
@@ -656,9 +682,9 @@
 
         .status-box {
             display: grid;
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns: 1fr;
             gap: 1.4rem;
-            margin-top: 2rem;
+            margin-top: 1.8rem;
         }
 
         .status-item {
@@ -681,7 +707,7 @@
         }
 
         .status-item strong {
-            font-size: 1.2rem;
+            font-size: 1.25rem;
             color: #fff;
             font-weight: 800;
         }
@@ -764,6 +790,7 @@
             display: flex;
             flex-direction: column;
             box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5);
+            cursor: pointer;
         }
 
         .store-card.featured {
@@ -922,6 +949,8 @@
             transition: all 0.3s ease;
             text-decoration: none;
             display: block;
+            width: 100%;
+            font-size: 0.9rem;
             box-shadow: 0 0 20px var(--primary-glow);
         }
 
@@ -934,6 +963,215 @@
             transform: scale(1.02);
             box-shadow: 0 0 30px var(--primary-glow);
             color: #000;
+        }
+
+        /* ---------------- STORE CHECKOUT / TICKET MODAL ---------------- */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(3, 7, 18, 0.88);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+            padding: 1.5rem;
+            animation: modalFadeIn 0.25s ease;
+        }
+
+        .modal-overlay.active {
+            display: flex;
+        }
+
+        @keyframes modalFadeIn {
+            from { opacity: 0; transform: scale(0.95); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        .modal-box {
+            background: linear-gradient(160deg, #0f172a 0%, #070c18 100%);
+            border: 1px solid rgba(88, 101, 242, 0.45);
+            border-radius: 24px;
+            max-width: 440px;
+            width: 100%;
+            padding: 2.2rem 1.8rem;
+            position: relative;
+            box-shadow: 0 25px 70px rgba(0, 0, 0, 0.95), 0 0 40px rgba(88, 101, 242, 0.2);
+            text-align: center;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 16px;
+            right: 18px;
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            color: var(--text-muted);
+            width: 36px;
+            height: 36px;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-close:hover {
+            background: rgba(239, 68, 68, 0.2);
+            color: var(--red-color);
+            border-color: var(--red-color);
+        }
+
+        .modal-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(88, 101, 242, 0.16);
+            border: 1px solid rgba(88, 101, 242, 0.45);
+            color: #a5b4fc;
+            padding: 0.35rem 1rem;
+            border-radius: 50px;
+            font-size: 0.75rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 0.9rem;
+        }
+
+        .modal-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.45rem;
+            font-weight: 900;
+            color: #fff;
+            margin-bottom: 0.25rem;
+        }
+
+        .modal-price {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.7rem;
+            font-weight: 900;
+            color: var(--green-color);
+            margin-bottom: 1.4rem;
+        }
+
+        .modal-form {
+            text-align: left;
+            display: flex;
+            flex-direction: column;
+            gap: 1.1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: flex;
+            align-items: center;
+            gap: 7px;
+            font-size: 0.78rem;
+            font-weight: 800;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            margin-bottom: 0.45rem;
+        }
+
+        .form-group label i {
+            color: var(--primary-blue);
+        }
+
+        .form-control {
+            width: 100%;
+            background: rgba(3, 7, 18, 0.9);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 0.9rem 1rem;
+            color: #fff;
+            font-size: 0.95rem;
+            font-weight: 600;
+            outline: none;
+            transition: all 0.25s ease;
+        }
+
+        .form-control:focus {
+            border-color: var(--primary-blue);
+            box-shadow: 0 0 15px rgba(56, 189, 248, 0.25);
+        }
+
+        .bkash-box {
+            background: rgba(226, 19, 110, 0.12);
+            border: 1px solid rgba(226, 19, 110, 0.45);
+            border-radius: 12px;
+            padding: 0.85rem 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            color: #ff69b4;
+            font-weight: 800;
+            font-size: 0.95rem;
+        }
+
+        .bkash-box span {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .bkash-tag {
+            background: #e2136e;
+            color: #fff;
+            font-size: 0.7rem;
+            padding: 0.2rem 0.65rem;
+            border-radius: 50px;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+        }
+
+        .modal-status {
+            margin-top: 0.8rem;
+            font-size: 0.84rem;
+            font-weight: 700;
+            min-height: 20px;
+        }
+
+        .modal-status.success {
+            color: var(--green-color);
+        }
+
+        .modal-status.error {
+            color: var(--red-color);
+        }
+
+        .btn-ticket-discord {
+            background: linear-gradient(135deg, #5865F2, #4350d8);
+            color: #fff;
+            border: none;
+            padding: 1rem 1.5rem;
+            border-radius: 12px;
+            font-weight: 800;
+            font-size: 0.92rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            box-shadow: 0 0 25px rgba(88, 101, 242, 0.5);
+            transition: all 0.3s ease;
+        }
+
+        .btn-ticket-discord:hover:not(:disabled) {
+            background: linear-gradient(135deg, #4752C4, #3641b8);
+            transform: translateY(-2px);
+            box-shadow: 0 0 35px rgba(88, 101, 242, 0.8);
+        }
+
+        .btn-ticket-discord:disabled {
+            opacity: 0.75;
+            cursor: not-allowed;
         }
 
         /* ---------------- PAGE 5: GALLERY ---------------- */
@@ -1221,10 +1459,6 @@
                 justify-content: center;
             }
 
-            .status-box {
-                grid-template-columns: 1fr;
-            }
-
             .footer-container {
                 flex-direction: column;
                 text-align: center;
@@ -1263,6 +1497,10 @@
 
             .btn-store {
                 padding: 0.6rem 1rem;
+            }
+
+            .modal-box {
+                padding: 1.8rem 1.3rem;
             }
         }
     </style>
@@ -1303,10 +1541,10 @@
                 <img src="minecraft_title.png" alt="Gramin MC" class="hero-logo">
                 
                 <div class="server-badge">
-                    <i class="fa-solid fa-shield-halved"></i> ULTIMATE SURVIVAL SMP
+                    <i class="fa-solid fa-skull-crossbones"></i> SURVIVAL SMP • RAID BASE
                 </div>
                 
-                <p>Welcome to Gramin MC Survival SMP! Immerse yourself in an enhanced vanilla survival experience with land protection, custom player economy, quests, and a friendly community.</p>
+                <p>Welcome to Gramin MC Survival SMP! Immerse yourself in an action-packed survival experience featuring intense base raiding, custom player economy, quests, and an active community.</p>
                 
                 <div class="hero-actions">
                     <button class="btn-primary" onclick="showPage('ip')"><i class="fa-solid fa-gamepad"></i> Play Now</button>
@@ -1347,9 +1585,9 @@
 
             <div class="features-grid">
                 <div class="feature-card">
-                    <div class="feature-icon"><i class="fa-solid fa-shield-halved"></i></div>
-                    <h3>Land Claiming</h3>
-                    <p>Protect your builds and chests effortlessly using our easy land claim system. No griefing guaranteed!</p>
+                    <div class="feature-icon raid-icon"><i class="fa-solid fa-bomb"></i></div>
+                    <h3>Raid Base</h3>
+                    <p>Build hidden underground vaults, defend your fortress with traps, and raid rival bases for epic loot and glory!</p>
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon"><i class="fa-solid fa-coins"></i></div>
@@ -1364,18 +1602,20 @@
             </div>
         </section>
 
-        <!-- PAGE 2: SERVER IP -->
+        <!-- PAGE 2: SERVER IP (ONLY JAVA 1.21.11, NO PORT, SURVIVAL SMP) -->
         <section id="page-ip" class="page-section">
             <div class="section-header">
                 <h1>Server <span>Address</span></h1>
-                <p>Connect using the official server IP address below</p>
+                <p>Connect using the official Java Edition server IP address below</p>
             </div>
 
             <div class="ip-container">
                 <div class="ip-card">
-                    <div class="ip-icon"><i class="fa-solid fa-server"></i></div>
-                    <h2>Java & Bedrock Edition</h2>
-                    <p style="color: var(--text-muted); font-size: 0.88rem; margin-top: 0.4rem;">Supports Minecraft Versions 1.16 - 1.20.x</p>
+                    <div class="ip-icon"><i class="fa-solid fa-cube"></i></div>
+                    <h2>Java Edition Only</h2>
+                    <div class="version-pill">
+                        <i class="fa-solid fa-circle-check"></i> Supported Version: 1.21.11 Only
+                    </div>
                     
                     <div class="ip-address-box" id="server-ip">play.graminmc.cyou</div>
                     
@@ -1388,10 +1628,6 @@
                     <div class="status-item">
                         <span>Server Mode</span>
                         <strong style="color: var(--primary-blue);"><i class="fa-solid fa-tree"></i> Survival SMP</strong>
-                    </div>
-                    <div class="status-item">
-                        <span>Bedrock Port</span>
-                        <strong>19132</strong>
                     </div>
                 </div>
             </div>
@@ -1416,8 +1652,8 @@
                 <div class="rule-card">
                     <div class="rule-num">2</div>
                     <div class="rule-content">
-                        <h3>No Griefing or Stealing</h3>
-                        <p>Respect other players' builds and land claims. Stealing or destroying claimed/unclaimed player property is not tolerated.</p>
+                        <h3>Fair Base Raiding Only</h3>
+                        <p>Base raiding and PvP are part of the survival experience, but using illegal exploits, lag machines, or spawn-camping new players is forbidden.</p>
                     </div>
                 </div>
 
@@ -1443,7 +1679,7 @@
         <section id="page-store" class="page-section">
             <div class="section-header">
                 <h1>Gramin MC <span>Store</span></h1>
-                <p>Support the server and unlock exclusive ranks, kits, and SMP coins!</p>
+                <p>Click any rank or coin package to send your order directly to Discord and join our server!</p>
             </div>
 
             <!-- STORE TAB BUTTONS -->
@@ -1456,7 +1692,7 @@
             <div id="tab-ranks" class="store-tab-content active">
                 <div class="store-grid">
                     <!-- VIP RANK -->
-                    <div class="store-card">
+                    <div class="store-card" onclick="openTicketModal('VIP Rank (1 Month)', '99৳', 'Rank')">
                         <div class="card-icon"><i class="fa-solid fa-gem" style="color: #FCFF00;"></i></div>
                         <div class="duration-tag"><i class="fa-regular fa-clock"></i> 1 Month Access</div>
                         <div class="rank-title-box">
@@ -1473,11 +1709,11 @@
                             <li><i class="fa-solid fa-check"></i> Access to /hat & /workbench</li>
                             <li><i class="fa-solid fa-check"></i> 3 Sethomes Limit</li>
                         </ul>
-                        <a href="https://discord.gg/BnE8M6ExNc" target="_blank" class="btn-buy-card">Buy VIP Rank</a>
+                        <button type="button" class="btn-buy-card">Buy VIP Rank</button>
                     </div>
 
                     <!-- MVP RANK -->
-                    <div class="store-card">
+                    <div class="store-card" onclick="openTicketModal('MVP Rank (1 Month)', '199৳', 'Rank')">
                         <div class="card-icon"><i class="fa-solid fa-shield-halved" style="color: #00F5FF;"></i></div>
                         <div class="duration-tag"><i class="fa-regular fa-clock"></i> 1 Month Access</div>
                         <div class="rank-title-box">
@@ -1494,11 +1730,11 @@
                             <li><i class="fa-solid fa-check"></i> Access to /enderchest & /feed</li>
                             <li><i class="fa-solid fa-check"></i> 5 Sethomes Limit</li>
                         </ul>
-                        <a href="https://discord.gg/BnE8M6ExNc" target="_blank" class="btn-buy-card">Buy MVP Rank</a>
+                        <button type="button" class="btn-buy-card">Buy MVP Rank</button>
                     </div>
 
                     <!-- HERO RANK -->
-                    <div class="store-card">
+                    <div class="store-card" onclick="openTicketModal('HERO Rank (1 Month)', '250৳', 'Rank')">
                         <div class="card-icon"><i class="fa-solid fa-dragon" style="color: #00FA95;"></i></div>
                         <div class="duration-tag"><i class="fa-regular fa-clock"></i> 1 Month Access</div>
                         <div class="rank-title-box">
@@ -1512,14 +1748,14 @@
                         <ul class="card-features">
                             <li><i class="fa-solid fa-check"></i> HERO Green Chat Tag</li>
                             <li><i class="fa-solid fa-check"></i> HERO Ultimate Armor Kit</li>
-                            <li><i class="fa-solid fa-check"></i> Access to /fly in claims</li>
+                            <li><i class="fa-solid fa-check"></i> Access to /fly in safezones</li>
                             <li><i class="fa-solid fa-check"></i> 7 Sethomes Limit</li>
                         </ul>
-                        <a href="https://discord.gg/BnE8M6ExNc" target="_blank" class="btn-buy-card">Buy HERO Rank</a>
+                        <button type="button" class="btn-buy-card">Buy HERO Rank</button>
                     </div>
 
                     <!-- SPECIAL RANK -->
-                    <div class="store-card featured">
+                    <div class="store-card featured" onclick="openTicketModal('SPECIAL Rank (1 Month)', '399৳', 'Rank')">
                         <div class="card-icon"><i class="fa-solid fa-crown" style="color: #fbbf24;"></i></div>
                         <div class="duration-tag"><i class="fa-regular fa-clock"></i> 1 Month Access</div>
                         <div class="rank-title-box">
@@ -1536,11 +1772,11 @@
                             <li><i class="fa-solid fa-check"></i> Global /fly & /heal Ability</li>
                             <li><i class="fa-solid fa-check"></i> 10 Sethomes Limit</li>
                         </ul>
-                        <a href="https://discord.gg/BnE8M6ExNc" target="_blank" class="btn-buy-card gold-btn">Buy SPECIAL Rank</a>
+                        <button type="button" class="btn-buy-card gold-btn">Buy SPECIAL Rank</button>
                     </div>
 
                     <!-- CUSTOM PREFIX -->
-                    <div class="store-card">
+                    <div class="store-card" onclick="openTicketModal('CUSTOM Prefix (1 Month)', '499৳', 'Rank')">
                         <div class="card-icon"><i class="fa-solid fa-wand-magic-sparkles" style="color: #FDFFFF;"></i></div>
                         <div class="duration-tag"><i class="fa-regular fa-clock"></i> 1 Month Access</div>
                         <div class="rank-title-box">
@@ -1556,7 +1792,7 @@
                             <li><i class="fa-solid fa-check"></i> Choose Your Own Text & Color</li>
                             <li><i class="fa-solid fa-check"></i> Unique Identity in Server Chat</li>
                         </ul>
-                        <a href="https://discord.gg/BnE8M6ExNc" target="_blank" class="btn-buy-card">Buy CUSTOM Prefix</a>
+                        <button type="button" class="btn-buy-card">Buy CUSTOM Prefix</button>
                     </div>
                 </div>
             </div>
@@ -1564,7 +1800,7 @@
             <!-- TAB 2: SMP COINS -->
             <div id="tab-coins" class="store-tab-content">
                 <div class="store-grid">
-                    <div class="store-card">
+                    <div class="store-card" onclick="openTicketModal('10 SMP Coins', '5৳', 'Coins')">
                         <div class="card-icon coin-icon"><i class="fa-solid fa-coins"></i></div>
                         <h3>10 SMP COIN</h3>
                         <div class="price-box">
@@ -1574,10 +1810,10 @@
                             <li><i class="fa-solid fa-check"></i> Instant In-Game Delivery</li>
                             <li><i class="fa-solid fa-check"></i> Starter Pack Top-Up</li>
                         </ul>
-                        <a href="https://discord.gg/BnE8M6ExNc" target="_blank" class="btn-buy-card gold-btn">Buy Coins</a>
+                        <button type="button" class="btn-buy-card gold-btn">Buy Coins</button>
                     </div>
 
-                    <div class="store-card">
+                    <div class="store-card" onclick="openTicketModal('30 SMP Coins', '15৳', 'Coins')">
                         <div class="card-icon coin-icon"><i class="fa-solid fa-coins"></i></div>
                         <h3>30 SMP COIN</h3>
                         <div class="price-box">
@@ -1587,10 +1823,10 @@
                             <li><i class="fa-solid fa-check"></i> Instant In-Game Delivery</li>
                             <li><i class="fa-solid fa-check"></i> Basic In-Game Upgrades</li>
                         </ul>
-                        <a href="https://discord.gg/BnE8M6ExNc" target="_blank" class="btn-buy-card gold-btn">Buy Coins</a>
+                        <button type="button" class="btn-buy-card gold-btn">Buy Coins</button>
                     </div>
 
-                    <div class="store-card">
+                    <div class="store-card" onclick="openTicketModal('50 SMP Coins', '25৳', 'Coins')">
                         <div class="card-icon coin-icon"><i class="fa-solid fa-coins"></i></div>
                         <h3>50 SMP COIN</h3>
                         <div class="price-box">
@@ -1600,10 +1836,10 @@
                             <li><i class="fa-solid fa-check"></i> Instant In-Game Delivery</li>
                             <li><i class="fa-solid fa-check"></i> Popular Small Pack</li>
                         </ul>
-                        <a href="https://discord.gg/BnE8M6ExNc" target="_blank" class="btn-buy-card gold-btn">Buy Coins</a>
+                        <button type="button" class="btn-buy-card gold-btn">Buy Coins</button>
                     </div>
 
-                    <div class="store-card">
+                    <div class="store-card" onclick="openTicketModal('100 SMP Coins', '50৳', 'Coins')">
                         <div class="card-icon coin-icon"><i class="fa-solid fa-coins"></i></div>
                         <h3>100 SMP COIN</h3>
                         <div class="price-box">
@@ -1613,10 +1849,10 @@
                             <li><i class="fa-solid fa-check"></i> Instant In-Game Delivery</li>
                             <li><i class="fa-solid fa-check"></i> Great Value Option</li>
                         </ul>
-                        <a href="https://discord.gg/BnE8M6ExNc" target="_blank" class="btn-buy-card gold-btn">Buy Coins</a>
+                        <button type="button" class="btn-buy-card gold-btn">Buy Coins</button>
                     </div>
 
-                    <div class="store-card featured">
+                    <div class="store-card featured" onclick="openTicketModal('500 SMP Coins', '250৳', 'Coins')">
                         <div class="card-icon coin-icon"><i class="fa-solid fa-coins"></i></div>
                         <h3>500 SMP COIN</h3>
                         <div class="price-box">
@@ -1627,10 +1863,10 @@
                             <li><i class="fa-solid fa-check"></i> High Value Coin Bundle</li>
                             <li><i class="fa-solid fa-check"></i> Most Popular Pack</li>
                         </ul>
-                        <a href="https://discord.gg/BnE8M6ExNc" target="_blank" class="btn-buy-card gold-btn">Buy Coins</a>
+                        <button type="button" class="btn-buy-card gold-btn">Buy Coins</button>
                     </div>
 
-                    <div class="store-card">
+                    <div class="store-card" onclick="openTicketModal('1000 SMP Coins', '500৳', 'Coins')">
                         <div class="card-icon coin-icon"><i class="fa-solid fa-coins"></i></div>
                         <h3>1000 SMP COIN</h3>
                         <div class="price-box">
@@ -1641,7 +1877,7 @@
                             <li><i class="fa-solid fa-check"></i> Ultimate Coin Bundle</li>
                             <li><i class="fa-solid fa-check"></i> Maximum Rewards</li>
                         </ul>
-                        <a href="https://discord.gg/BnE8M6ExNc" target="_blank" class="btn-buy-card gold-btn">Buy Coins</a>
+                        <button type="button" class="btn-buy-card gold-btn">Buy Coins</button>
                     </div>
                 </div>
             </div>
@@ -1655,7 +1891,6 @@
             </div>
 
             <div class="gallery-grid">
-                <!-- SCREENSHOT 1: MAIN SPAWN OVERVIEW -->
                 <div class="gallery-item" style="background-image: url('Screenshot 2026-10-30 172834.png');">
                     <div class="gallery-info">
                         <h3>Main Spawn Overview</h3>
@@ -1663,7 +1898,6 @@
                     </div>
                 </div>
 
-                <!-- SCREENSHOT 2: TOP-DOWN SPAWN VIEW -->
                 <div class="gallery-item" style="background-image: url('Screenshot 2026-10-30 172857.png');">
                     <div class="gallery-info">
                         <h3>Aerial Spawn Hub</h3>
@@ -1671,7 +1905,6 @@
                     </div>
                 </div>
 
-                <!-- SCREENSHOT 3: MYSTICAL CRATES AREA -->
                 <div class="gallery-item" style="background-image: url('Screenshot 2026-10-30 172917.png');">
                     <div class="gallery-info">
                         <h3>Mystical Crates Zone</h3>
@@ -1679,7 +1912,6 @@
                     </div>
                 </div>
 
-                <!-- SCREENSHOT 4: SERVER RULES Shrine -->
                 <div class="gallery-item" style="background-image: url('Screenshot 2026-10-30 172935.png');">
                     <div class="gallery-info">
                         <h3>In-Game Rules Shrine</h3>
@@ -1687,7 +1919,6 @@
                     </div>
                 </div>
 
-                <!-- SCREENSHOT 5: RANKS DISPLAY AREA -->
                 <div class="gallery-item" style="background-image: url('Screenshot 2026-10-30 173008.png');">
                     <div class="gallery-info">
                         <h3>In-Game Rank Pedestals</h3>
@@ -1695,7 +1926,6 @@
                     </div>
                 </div>
 
-                <!-- SCREENSHOT 6: TOP PLAYTIME LEADERBOARD -->
                 <div class="gallery-item" style="background-image: url('Screenshot 2026-10-30 173029.png');">
                     <div class="gallery-info">
                         <h3>Top Playtime Leaderboard</h3>
@@ -1703,7 +1933,6 @@
                     </div>
                 </div>
 
-                <!-- SCREENSHOT 7: CHERRY BLOSSOM EVENT ARENA -->
                 <div class="gallery-item" style="background-image: url('Screenshot 2026-10-30 173046.png');">
                     <div class="gallery-info">
                         <h3>Cherry Blossom Event Arena</h3>
@@ -1711,7 +1940,6 @@
                     </div>
                 </div>
 
-                <!-- SCREENSHOT 8: SPAWN BEACON PLAZA -->
                 <div class="gallery-item" style="background-image: url('Screenshot 2026-10-30 173120.png');">
                     <div class="gallery-info">
                         <h3>Spawn Beacon Plaza</h3>
@@ -1755,6 +1983,48 @@
 
     </main>
 
+    <!-- STORE ORDER MODAL (ONLY IGN, DISCORD USER & BKASH) -->
+    <div class="modal-overlay" id="ticketModal" onclick="closeTicketModalOnOutside(event)">
+        <div class="modal-box">
+            <button class="modal-close" onclick="closeTicketModal()" aria-label="Close modal">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+            <div class="modal-badge">
+                <i class="fa-brands fa-discord"></i> Server Order Channel
+            </div>
+
+            <h2 class="modal-title" id="modalItemName">VIP Rank (1 Month)</h2>
+            <div class="modal-price" id="modalItemPrice">99৳</div>
+
+            <div class="modal-form">
+                <div class="form-group">
+                    <label for="mcUsername"><i class="fa-solid fa-gamepad"></i> Minecraft IGN</label>
+                    <input type="text" id="mcUsername" class="form-control" placeholder="Enter your Minecraft username">
+                </div>
+
+                <div class="form-group">
+                    <label for="discordTag"><i class="fa-brands fa-discord"></i> Discord User</label>
+                    <input type="text" id="discordTag" class="form-control" placeholder="Enter your Discord username">
+                </div>
+
+                <div class="form-group">
+                    <label><i class="fa-solid fa-wallet"></i> Payment Method</label>
+                    <div class="bkash-box">
+                        <span><i class="fa-solid fa-money-bill-wave"></i> bKash</span>
+                        <span class="bkash-tag">bKash Only</span>
+                    </div>
+                </div>
+            </div>
+
+            <button type="button" class="btn-ticket-discord" id="createTicketBtn" onclick="sendOrderToDiscord()">
+                <i class="fa-solid fa-paper-plane"></i> Send Order & Join Server
+            </button>
+
+            <div class="modal-status" id="modalStatus"></div>
+        </div>
+    </div>
+
     <!-- FOOTER -->
     <footer>
         <div class="footer-container">
@@ -1769,8 +2039,17 @@
         </div>
     </footer>
 
-    <!-- JAVASCRIPT FOR NAVIGATION, TABS & LIVE STATS -->
+    <!-- JAVASCRIPT FOR NAVIGATION, TABS, DISCORD WEBHOOK ORDER & LIVE STATS -->
     <script>
+        // ==========================================
+        // DISCORD SERVER ORDER CHANNEL WEBHOOK & INVITE
+        // ==========================================
+        const DISCORD_WEBHOOK_URL = "https://discord.com/api/webhooks/1573569354585477220/-zh0ac-Gb4WTBHXoexUHeHiG9aPc8vNyySRT9o1xXUK3u6puTkKO2HAVfXEpSgS5M3O4";
+        const DISCORD_SERVER_INVITE = "https://discord.gg/BnE8M6ExNc";
+
+        let selectedItemName = "";
+        let selectedItemPrice = "";
+
         // TOGGLE MOBILE MENU
         function toggleMenu() {
             const navLinks = document.getElementById('navLinks');
@@ -1830,6 +2109,104 @@
             } else {
                 tabBtns[1].classList.add('active');
                 document.getElementById('tab-coins').classList.add('active');
+            }
+        }
+
+        // OPEN STORE TICKET MODAL
+        function openTicketModal(itemName, itemPrice, category) {
+            selectedItemName = itemName;
+            selectedItemPrice = itemPrice;
+
+            document.getElementById('modalItemName').innerText = itemName;
+            const priceEl = document.getElementById('modalItemPrice');
+            priceEl.innerText = itemPrice;
+            priceEl.style.color = category === 'Coins' ? 'var(--gold-color)' : 'var(--green-color)';
+
+            const statusEl = document.getElementById('modalStatus');
+            statusEl.innerText = "";
+            statusEl.className = "modal-status";
+
+            document.getElementById('ticketModal').classList.add('active');
+        }
+
+        // CLOSE STORE TICKET MODAL
+        function closeTicketModal() {
+            document.getElementById('ticketModal').classList.remove('active');
+        }
+
+        function closeTicketModalOnOutside(event) {
+            if (event.target.id === 'ticketModal') {
+                closeTicketModal();
+            }
+        }
+
+        // SEND ORDER DIRECTLY TO DISCORD ORDER CHANNEL & JOIN DISCORD SERVER
+        async function sendOrderToDiscord() {
+            const ign = document.getElementById('mcUsername').value.trim();
+            const discordUser = document.getElementById('discordTag').value.trim();
+            const payment = "bKash";
+            const btn = document.getElementById('createTicketBtn');
+            const statusEl = document.getElementById('modalStatus');
+
+            if (!ign || !discordUser) {
+                statusEl.innerText = "Please enter both Minecraft IGN and Discord User!";
+                statusEl.className = "modal-status error";
+                return;
+            }
+
+            btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Sending to Discord...';
+            btn.disabled = true;
+            statusEl.innerText = "";
+            statusEl.className = "modal-status";
+
+            const payload = {
+                username: "Gramin MC Server Orders",
+                embeds: [{
+                    title: "🛒 New Server Order",
+                    color: 5793266,
+                    fields: [
+                        { name: "Item", value: `${selectedItemName} (${selectedItemPrice})`, inline: false },
+                        { name: "Minecraft IGN", value: ign, inline: true },
+                        { name: "Discord User", value: discordUser, inline: true },
+                        { name: "Payment Method", value: payment, inline: true }
+                    ],
+                    timestamp: new Date().toISOString()
+                }]
+            };
+
+            try {
+                const res = await fetch(DISCORD_WEBHOOK_URL, {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify(payload)
+                });
+
+                if (res.ok || res.status === 204) {
+                    statusEl.innerText = "Order sent! Joining Discord server...";
+                    statusEl.className = "modal-status success";
+                    btn.innerHTML = '<i class="fa-solid fa-check"></i> Sent! Joining Discord...';
+                    btn.style.background = 'linear-gradient(135deg, #22c55e, #16a34a)';
+
+                    document.getElementById('mcUsername').value = "";
+                    document.getElementById('discordTag').value = "";
+
+                    setTimeout(() => {
+                        window.open(DISCORD_SERVER_INVITE, '_blank', 'noopener,noreferrer');
+                        btn.innerHTML = '<i class="fa-solid fa-paper-plane"></i> Send Order & Join Server';
+                        btn.style.background = 'linear-gradient(135deg, #5865F2, #4350d8)';
+                        btn.disabled = false;
+                        closeTicketModal();
+                    }, 900);
+                } else {
+                    const errText = await res.text();
+                    throw new Error(`HTTP ${res.status}: ${errText}`);
+                }
+            } catch (err) {
+                console.error("Discord webhook failed:", err);
+                statusEl.innerText = "Webhook failed! Check if the Webhook URL is valid or active.";
+                statusEl.className = "modal-status error";
+                btn.innerHTML = '<i class="fa-solid fa-paper-plane"></i> Send Order & Join Server';
+                btn.disabled = false;
             }
         }
 
